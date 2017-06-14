@@ -22,7 +22,7 @@ public class ScheduleService {
 	public void executeSchedule() throws SchedulerException{
 		//Indication pour le cronSchedule "sec min heure jour mois jourDeLaSemaine année(optionnel)"
 		//Pour plus de détail visiter https://docs.oracle.com/cd/E12058_01/doc/doc.1014/e12030/cron_expressions.htm
-		String cronExpression = "0 30 22 * * ?";
+		String cronExpression = "0 0 1 * * ?";
 		
 		// Grab the Scheduler instance from the Factory
 		Scheduler scheduler = StdSchedulerFactory.getDefaultScheduler();
@@ -30,7 +30,7 @@ public class ScheduleService {
 		// and start it off
 		scheduler.start();
 		  
-		// define the job and tie it to our MyJob class
+		// define the job and tie it to our class
 		JobDetail job = newJob(JobTraitementDeNuit.class)
 				.withIdentity("job1", "group1")
 				.build();
