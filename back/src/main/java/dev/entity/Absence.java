@@ -1,95 +1,107 @@
 package dev.entity;
 
-import java.time.LocalDateTime;
-
 import javax.persistence.*;
 
 
 @Entity
 public class Absence {
-@Id
-@GeneratedValue(strategy=GenerationType.IDENTITY)
-int id ;
-LocalDateTime debut;
-LocalDateTime fin;
-@Enumerated(EnumType.STRING)
-TypeAbsence type;
-@Enumerated(EnumType.STRING)
-Statut statut;
-String motif;
-@ManyToOne
-Utilisateur collab;
+	
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	int id ;
+	
+	String dateDebut;
+	String dateFin;
+	String matricule;
+	
 
-public Absence(LocalDateTime debut, LocalDateTime fin, TypeAbsence type, Statut statut, String motif,
-		Utilisateur collab) {
-	super();
-	this.debut = debut;
-	this.fin = fin;
-	this.type = type;
-	this.statut = statut;
-	this.motif = motif;
-	this.collab = collab;
-}
+	@Enumerated(EnumType.STRING)
+	TypeAbsence type;
+	
+	@Enumerated(EnumType.STRING)
+	Statut statut;
+	
+	String motif;
+	
+	@ManyToOne
+	Utilisateur collab;
 
-public Absence() {
-	super();
-}
+	public Absence(String dateDebut, String dateFin, TypeAbsence type, Statut statut, String motif,
+			Utilisateur collab, String matricule) {
+		this.dateDebut = dateDebut;
+		this.dateFin = dateFin;
+		this.type = type;
+		this.statut = statut;
+		this.motif = motif;
+		this.collab = collab;
+		this.matricule = matricule;
+	}
 
-public int getId() {
-	return id;
-}
+	public Absence() {}
 
-public void setId(int id) {
-	this.id = id;
-}
+	public int getId() {
+		return id;
+	}
 
-public LocalDateTime getDebut() {
-	return debut;
-}
+	public void setId(int id) {
+		this.id = id;
+	}
 
-public void setDebut(LocalDateTime debut) {
-	this.debut = debut;
-}
+	public String getdateDebut() {
+		return dateDebut;
+	}
 
-public LocalDateTime getFin() {
-	return fin;
-}
+	public void setdateDebut(String dateDebut) {
+		this.dateDebut = dateDebut;
+	}
 
-public void setFin(LocalDateTime fin) {
-	this.fin = fin;
-}
+	public String getdateFin() {
+		return dateFin;
+	}
 
-public TypeAbsence getType() {
-	return type;
-}
+	public void setdateFin(String dateFin) {
+		this.dateFin = dateFin;
+	}
 
-public void setType(TypeAbsence type) {
-	this.type = type;
-}
+	public TypeAbsence getType() {
+		return type;
+	}
 
-public Statut getStatut() {
-	return statut;
-}
+	public void setType(TypeAbsence type) {
+		this.type = type;
+	}
 
-public void setStatut(Statut statut) {
-	this.statut = statut;
-}
+	public Statut getStatut() {
+		return statut;
+	}
 
-public String getMotif() {
-	return motif;
-}
+	public void setStatut(Statut statut) {
+		this.statut = statut;
+	}
 
-public void setMotif(String motif) {
-	this.motif = motif;
-}
+	public String getMotif() {
+		return motif;
+	}
 
-public Utilisateur getCollab() {
-	return collab;
-}
+	public void setMotif(String motif) {
+		this.motif = motif;
+	}
 
-public void setCollab(Utilisateur collab) {
-	this.collab = collab;
-}
+	public Utilisateur getCollab() {
+		return collab;
+	}
+
+	public void setCollab(Utilisateur collab) {
+		this.collab = collab;
+	}
+
+	public String getMatricule() {
+		return matricule;
+	}
+
+	public void setMatricule(String matricule) {
+		this.matricule = matricule;
+	}
 
 
 
