@@ -5,9 +5,10 @@ Back
   SchedulerService
 
   Entite
-
+  
 Front
-
+  Vues
+  Menu Admin, Employe, Manager
   Component
 
   Service
