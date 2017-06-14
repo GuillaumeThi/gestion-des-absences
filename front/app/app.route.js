@@ -12,6 +12,9 @@ export function route ($routeProvider, $locationProvider) {
       templateUrl: '../modalContent.html'
     })
     .otherwise({
-      redirectTo: '/'
-    })
+
+
+
+        redirectTo: '/'
+    });
 }

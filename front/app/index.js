@@ -1,3 +1,4 @@
+
 import angular from 'angular'
 import RouteModule from 'angular-route'
 import 'bootstrap/dist/css/bootstrap.css'
@@ -5,6 +6,7 @@ import { route } from './app.route'
 import { AccueilComponent } from './accueil/accueil.component'
 import { PlanningComponent } from './planning/planning.component'
 import { ModalComponent } from './modal/modal.component'
+import { UtilisateursService } from './service/utilisateur.service'
 // import { u1 } from 'angular-bootstrap-calendar'
 // import { u2 } from 'angular-ui-bootstrap'
 import {moment} from 'moment'
@@ -15,6 +17,7 @@ import {moment} from 'moment'
 angular.module('app', [RouteModule, 'mwl.calendar', 'ui.bootstrap']) //, [require('angular-bootstrap-calendar'), require('angular-ui-bootstrap')], ['mwl.calendar', 'ngAnimate', 'ui.bootstrap', 'colorpicker.module']
 .value('API_URL', API_URL)
 .value('moment', moment)
+.service('UtilisateursService', UtilisateursService)
 .component('accueil', AccueilComponent)
 .component('planning', PlanningComponent)
 .component('modal', ModalComponent)
@@ -142,3 +145,10 @@ angular.module('app', [RouteModule, 'mwl.calendar', 'ui.bootstrap']) //, [requir
     show: show
   }
 })
+
+
+
+
+
+
+
