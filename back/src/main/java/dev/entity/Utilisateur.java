@@ -13,7 +13,7 @@ public class Utilisateur {
 	
 	String matriculeCollab;
 	
-	@OneToMany 
+	@OneToMany(mappedBy="utilisateur")
 	List<Absence> absences;
 	
 	@Enumerated(EnumType.STRING)

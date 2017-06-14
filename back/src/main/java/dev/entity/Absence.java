@@ -12,8 +12,6 @@ public class Absence {
 	
 	String dateDebut;
 	String dateFin;
-	String matricule;
-	
 
 	@Enumerated(EnumType.STRING)
 	TypeAbsence type;
@@ -24,17 +22,16 @@ public class Absence {
 	String motif;
 	
 	@ManyToOne
-	Utilisateur collab;
+	Utilisateur utilisateur;
 
 	public Absence(String dateDebut, String dateFin, TypeAbsence type, Statut statut, String motif,
-			Utilisateur collab, String matricule) {
+			Utilisateur utilisateur) {
 		this.dateDebut = dateDebut;
 		this.dateFin = dateFin;
 		this.type = type;
 		this.statut = statut;
 		this.motif = motif;
-		this.collab = collab;
-		this.matricule = matricule;
+		this.utilisateur = utilisateur;
 	}
 
 	public Absence() {}
@@ -87,20 +84,12 @@ public class Absence {
 		this.motif = motif;
 	}
 
-	public Utilisateur getCollab() {
-		return collab;
+	public Utilisateur getutilisateur() {
+		return utilisateur;
 	}
 
-	public void setCollab(Utilisateur collab) {
-		this.collab = collab;
-	}
-
-	public String getMatricule() {
-		return matricule;
-	}
-
-	public void setMatricule(String matricule) {
-		this.matricule = matricule;
+	public void setutilisateur(Utilisateur utilisateur) {
+		this.utilisateur = utilisateur;
 	}
 
 
