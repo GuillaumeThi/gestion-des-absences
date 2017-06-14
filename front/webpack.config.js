@@ -1,7 +1,7 @@
 const webpack = require('webpack');
 const path = require('path');
 
-const API_URL = process.env.NODE_ENV === 'production' ? 'https://TODO' : 'http://localhost:8080';
+const API_URL = process.env.NODE_ENV === 'production' ? 'https://absences-api.cleverapps.io' : 'http://localhost:8080';
 
 const output = 'public';
 
