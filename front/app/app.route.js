@@ -1,13 +1,14 @@
 export function route ($routeProvider, $locationProvider) {
+  $locationProvider.html5Mode(true)
 
-    $locationProvider.html5Mode(true);
-
-    $routeProvider
+  $routeProvider
     .when('/', {
-        template: '<accueil></accueil>'
+      template: '<accueil></accueil>'
+    })
+    .when('/planning', {
+      template: '<planning></planning>'
     })
     .otherwise({
-        redirectTo: '/'
-    });
-
+      redirectTo: '/'
+    })
 }

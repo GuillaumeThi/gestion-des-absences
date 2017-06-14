@@ -1,14 +1,14 @@
-import './accueil.component.css';
-import template from './accueil.component.html';
+import './accueil.component.css'
+import template from './accueil.component.html'
 
 class controller {
-    constructor () {
-        this.titre = 'Accueil';
-    }
+  constructor () {
+    this.titre = 'Accueil'
+  }
 }
 
 export let AccueilComponent = {
-    template,
-    controller,
-    bindings: {}
-};
+  template,
+  controller,
+  bindings: {}
+}
