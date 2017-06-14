@@ -8,6 +8,9 @@ export function route ($routeProvider, $locationProvider) {
     .when('/planning', {
       template: '<planning></planning>'
     })
+    .when('/modalContent.html', {
+      templateUrl: '../modalContent.html'
+    })
     .otherwise({
       redirectTo: '/'
     })

@@ -4,6 +4,7 @@ import 'bootstrap/dist/css/bootstrap.css'
 import { route } from './app.route'
 import { AccueilComponent } from './accueil/accueil.component'
 import { PlanningComponent } from './planning/planning.component'
+import { ModalComponent } from './modal/modal.component'
 // import { u1 } from 'angular-bootstrap-calendar'
 // import { u2 } from 'angular-ui-bootstrap'
 import {moment} from 'moment'
@@ -16,6 +17,7 @@ angular.module('app', [RouteModule, 'mwl.calendar', 'ui.bootstrap']) //, [requir
 .value('moment', moment)
 .component('accueil', AccueilComponent)
 .component('planning', PlanningComponent)
+.component('modal', ModalComponent)
 .config(route, ['calendarConfig', function (calendarConfig) {
   console.log(calendarConfig)
   calendarConfig.templates.calendarMonthView = 'path/to/custom/template.html'
@@ -126,7 +128,7 @@ angular.module('app', [RouteModule, 'mwl.calendar', 'ui.bootstrap']) //, [requir
 .factory('alert', function ($uibModal) {
   function show (action, event) {
     return $uibModal.open({
-      templateUrl: 'modalContent.html',
+      template: '<modal></modal>',
       controller: function () {
         var vm = this
         vm.action = action
