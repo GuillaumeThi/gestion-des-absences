@@ -15,6 +15,8 @@ public class Collaborateur {
 	private String photo;
 	private List<String> subalternes;
 	private String departement;
+	private Role profil;
+	
 	
 	
 	public String getMatricule() {
@@ -82,6 +84,12 @@ public class Collaborateur {
 	}
 	public void setDepartement(String departement) {
 		this.departement = departement;
+	}
+	public Role getProfil() {
+		return profil;
+	}
+	public void setProfil(Role profil) {
+		this.profil = profil;
 	}
 	
 	
