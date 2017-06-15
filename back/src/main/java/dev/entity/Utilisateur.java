@@ -20,7 +20,7 @@ public class Utilisateur {
 	
 	@Enumerated(EnumType.STRING)
 	Role role;
-
+	
 	public Utilisateur(String matriculeCollab, List<Absence> absences, Role role) {
 		this.matriculeCollab = matriculeCollab;
 		this.absences = absences;

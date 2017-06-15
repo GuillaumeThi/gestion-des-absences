@@ -1,5 +1,7 @@
 package dev.entity;
 
+import java.time.LocalDate;
+
 import javax.persistence.*;
 
 
@@ -10,8 +12,8 @@ public class Absence {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	int id ;
 	
-	String dateDebut;
-	String dateFin;
+	LocalDate dateDebut;
+	LocalDate dateFin;
 
 	@Enumerated(EnumType.STRING)
 	TypeAbsence type;
@@ -24,7 +26,7 @@ public class Absence {
 	@ManyToOne
 	Utilisateur utilisateur;
 
-	public Absence(String dateDebut, String dateFin, TypeAbsence type, Statut statut, String motif,
+	public Absence(LocalDate dateDebut, LocalDate dateFin, TypeAbsence type, Statut statut, String motif,
 			Utilisateur utilisateur) {
 		this.dateDebut = dateDebut;
 		this.dateFin = dateFin;
@@ -44,19 +46,19 @@ public class Absence {
 		this.id = id;
 	}
 
-	public String getdateDebut() {
+	public LocalDate getdateDebut() {
 		return dateDebut;
 	}
 
-	public void setdateDebut(String dateDebut) {
+	public void setdateDebut(LocalDate dateDebut) {
 		this.dateDebut = dateDebut;
 	}
 
-	public String getdateFin() {
+	public LocalDate getdateFin() {
 		return dateFin;
 	}
 
-	public void setdateFin(String dateFin) {
+	public void setdateFin(LocalDate dateFin) {
 		this.dateFin = dateFin;
 	}
 

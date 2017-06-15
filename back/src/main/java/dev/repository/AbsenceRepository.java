@@ -9,4 +9,6 @@ import dev.entity.Statut;
 
 public interface AbsenceRepository extends JpaRepository<Absence, Integer>{
 	List<Absence> findByStatut(Statut statut);
+
+	List<Absence> findByUtilisateurId(int id);
 }

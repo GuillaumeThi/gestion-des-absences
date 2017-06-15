@@ -1,6 +1,8 @@
 package dev.entity;
 
 
+import java.time.LocalDate;
+
 import javax.persistence.*;
 
 @Entity
@@ -10,14 +12,14 @@ public class JourFerie {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	int id;
 	
-	String date;
+	LocalDate date;
 	
 	@Enumerated(EnumType.STRING)
 	TypeJourFerie type;
 	
 	String commentaire;
 
-	public JourFerie(String date, TypeJourFerie type, String commentaire) {
+	public JourFerie(LocalDate date, TypeJourFerie type, String commentaire) {
 		this.date = date;
 		this.type = type;
 		this.commentaire = commentaire;
@@ -33,11 +35,11 @@ public class JourFerie {
 		this.id = id;
 	}
 
-	public String getDate() {
+	public LocalDate getDate() {
 		return date;
 	}
 
-	public void setDate(String date) {
+	public void setDate(LocalDate date) {
 		this.date = date;
 	}
 
