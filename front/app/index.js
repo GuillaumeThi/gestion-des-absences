@@ -66,37 +66,39 @@ angular.module('app', [RouteModule, 'mwl.calendar', 'ui.bootstrap'])
   })
   EventService.getAbs().then(absences => {
     absences.forEach(uneAbs => {
-      switch (uneAbs.type) {
-        case 'RTT':
-          vm.events.push({
-            title: uneAbs.type,
-            startsAt: moment(uneAbs.dateDebut, 'DD-MM-YYYY'),
-            endsAt: moment(uneAbs.dateFin, 'DD-MM-YYYY'),
-            color: calendarConfig.colorTypes.special,
-            draggable: false,
-            resizable: false
-          })
-          break
-        case 'CONGE_PAYE':
-          vm.events.push({
-            title: uneAbs.type,
-            startsAt: moment(uneAbs.dateDebut, 'DD-MM-YYYY'),
-            endsAt: moment(uneAbs.dateFin, 'DD-MM-YYYY'),
-            color: calendarConfig.colorTypes.warning,
-            draggable: false,
-            resizable: false
-          })
-          break
-        case 'CONGE_SANS_SOLDE':
-          vm.events.push({
-            title: uneAbs.type + ' motif: ' + uneAbs.motif,
-            startsAt: moment(uneAbs.dateDebut, 'DD-MM-YYYY'),
-            endsAt: moment(uneAbs.dateFin, 'DD-MM-YYYY'),
-            color: calendarConfig.colorTypes.info,
-            draggable: false,
-            resizable: false
-          })
-          break
+      if (uneAbs.utilisateur.id === 1) { // modifié 1 par l'id récupérer du cookie authentif
+        switch (uneAbs.type) {
+          case 'RTT':
+            vm.events.push({
+              title: uneAbs.type,
+              startsAt: moment(uneAbs.dateDebut, 'DD-MM-YYYY'),
+              endsAt: moment(uneAbs.dateFin, 'DD-MM-YYYY'),
+              color: calendarConfig.colorTypes.special,
+              draggable: false,
+              resizable: false
+            })
+            break
+          case 'CONGE_PAYE':
+            vm.events.push({
+              title: uneAbs.type,
+              startsAt: moment(uneAbs.dateDebut, 'DD-MM-YYYY'),
+              endsAt: moment(uneAbs.dateFin, 'DD-MM-YYYY'),
+              color: calendarConfig.colorTypes.warning,
+              draggable: false,
+              resizable: false
+            })
+            break
+          case 'CONGE_SANS_SOLDE':
+            vm.events.push({
+              title: uneAbs.type + ' motif: ' + uneAbs.motif,
+              startsAt: moment(uneAbs.dateDebut, 'DD-MM-YYYY'),
+              endsAt: moment(uneAbs.dateFin, 'DD-MM-YYYY'),
+              color: calendarConfig.colorTypes.info,
+              draggable: false,
+              resizable: false
+            })
+            break
+        }
       }
     })
   })
