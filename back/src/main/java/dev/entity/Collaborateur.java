@@ -15,14 +15,28 @@ public class Collaborateur {
 	private String photo;
 	private List<String> subalternes;
 	private String departement;
-	private Role profil;
-	
-	
+
 	
 	public Collaborateur() {
 	}
 	
 	
+	public Collaborateur(String matricule, String nom, String prenom, String email, String dateNaissance, String sexe,
+			String address, String password, String photo, List<String> subalternes, String departement) {
+		this.matricule = matricule;
+		this.nom = nom;
+		this.prenom = prenom;
+		this.email = email;
+		this.dateNaissance = dateNaissance;
+		this.sexe = sexe;
+		this.address = address;
+		this.password = password;
+		this.photo = photo;
+		this.subalternes = subalternes;
+		this.departement = departement;
+	}
+
+
 	public String getMatricule() {
 		return matricule;
 	}
@@ -89,13 +103,7 @@ public class Collaborateur {
 	public void setDepartement(String departement) {
 		this.departement = departement;
 	}
-	public Role getProfil() {
-		return profil;
-	}
-	public void setProfil(Role profil) {
-		this.profil = profil;
-	}
-	
+
 	
 	
 }

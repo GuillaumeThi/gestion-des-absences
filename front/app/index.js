@@ -4,8 +4,10 @@ import RouteModule from 'angular-route'
 import 'bootstrap/dist/css/bootstrap.css'
 import { route } from './app.route'
 import { AccueilComponent } from './accueil/accueil.component'
+import { LoginComponent } from './login/login.view'
 import { PlanningComponent } from './planning/planning.component'
 import { ModalComponent } from './modal/modal.component'
+
 import { UtilisateursService } from './service/utilisateur.service'
 import { EventService } from './event.service'
 import 'angular-ui-bootstrap'
@@ -18,10 +20,26 @@ angular.module('app', [RouteModule, 'mwl.calendar', 'ui.bootstrap'])
 .value('moment', moment)
 .service('UtilisateursService', UtilisateursService)
 .service('EventService', EventService)
+
+
+// import { u1 } from 'angular-bootstrap-calendar'
+// import { u2 } from 'angular-ui-bootstrap'
+import {moment} from 'moment'
+// import { u3 } from 'mwl.calendar'
+// import { u4 } from 'ngAnimate'
+// import { u5 } from 'ui-bootstrap'
+//, 'mwl.calendar', 'ui.bootstrap', 'ngRoute', 'ngCookies'
+angular.module('app', [RouteModule]) //, [require('angular-bootstrap-calendar'), require('angular-ui-bootstrap')], ['mwl.calendar', 'ngAnimate', 'ui.bootstrap', 'colorpicker.module']
+//.value('API_URL', API_URL)
+//.value('moment', moment)
+
 .component('accueil', AccueilComponent)
 .component('planning', PlanningComponent)
 .component('modal', ModalComponent)
-.config(route, ['calendarConfig', function (calendarConfig) {
+.component('login', LoginComponent)
+.config(route)
+//.run(run)
+/*.config(route, ['calendarConfig', function (calendarConfig) {
   console.log(calendarConfig)
   calendarConfig.templates.calendarMonthView = 'path/to/custom/template.html'
   calendarConfig.dateFormatter = 'moment'
@@ -177,3 +195,10 @@ angular.module('app', [RouteModule, 'mwl.calendar', 'ui.bootstrap'])
     show: show
   }
 })
+
+
+
+*/
+
+
+
