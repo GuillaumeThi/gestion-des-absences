@@ -19,6 +19,10 @@ public class Collaborateur {
 	
 	
 	
+	public Collaborateur() {
+	}
+	
+	
 	public String getMatricule() {
 		return matricule;
 	}
