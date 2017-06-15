@@ -8,7 +8,7 @@ import { LoginComponent } from './login/login.view'
 import { PlanningComponent } from './planning/planning.component'
 import { ModalComponent } from './modal/modal.component'
 
-import { UtilisateursService } from './service/utilisateur.service'
+//import { UtilisateursService } from './service/utilisateur.service'
 import { EventService } from './event.service'
 import 'angular-ui-bootstrap'
 import 'angular-bootstrap-calendar'
@@ -18,13 +18,13 @@ import { moment } from 'moment'
 angular.module('app', [RouteModule, 'mwl.calendar', 'ui.bootstrap'])
 .value('API_URL', API_URL)
 .value('moment', moment)
-.service('UtilisateursService', UtilisateursService)
+//.service('UtilisateursService', UtilisateursService)
 .service('EventService', EventService)
 
 
 // import { u1 } from 'angular-bootstrap-calendar'
 // import { u2 } from 'angular-ui-bootstrap'
-import {moment} from 'moment'
+//import {moment} from 'moment'
 // import { u3 } from 'mwl.calendar'
 // import { u4 } from 'ngAnimate'
 // import { u5 } from 'ui-bootstrap'
