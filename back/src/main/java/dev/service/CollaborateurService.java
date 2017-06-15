@@ -21,6 +21,7 @@ public class CollaborateurService {
 	
 	/* 
 	 * Fonction récupérant les collaborateurs stockés sur serveur distant
+	 * 		et les retournant sous forme de liste d'objets Collaborateur
 	 */
 	public List<Collaborateur> listerCollaborateurs() throws JsonParseException, JsonMappingException, IOException {
 		

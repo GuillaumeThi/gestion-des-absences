@@ -1,0 +1,24 @@
+<h1>Gestion des absences</h1>
+
+<table class="table table-striped">
+	<thead>
+        <tr>
+        	<th>Date de début</th>
+            <th>Date de fin</th>
+            <th>Type</th>
+            <th>Statut</th>
+        </tr>
+    </thead>
+    
+    <tbody>
+    	<tr ng-repeat="absence in $ctrl.absences track by $index">
+    		<td>{{ absence.dateDebut }}</td>
+    		<td>{{ absence.dateFin }}</td>
+    		<td>{{ absence.type }}</td>
+    		<td>{{ absence.statut }}</td>
+    	</tr>
+    </tbody>
+</table>
+
+<strong>Demander une absence</strong>
+<a href="/absences/nouvelle-demande" class="btn btn-xs btn-primary"><span class="glyphicon glyphicon-plus"></span></a>
