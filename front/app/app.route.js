@@ -13,8 +13,6 @@ export function route ($routeProvider, $locationProvider) {
     })
     .otherwise({
 
-
-
-        redirectTo: '/'
-    });
+      redirectTo: '/'
+    })
 }

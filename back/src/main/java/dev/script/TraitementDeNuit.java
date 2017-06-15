@@ -19,7 +19,7 @@ public class TraitementDeNuit {
 	
 	private static final Logger log = LoggerFactory.getLogger(TraitementDeNuit.class);
 
-    @Scheduled(cron = "0/5 * * * * ?")
+   // @Scheduled(cron = "0/5 * * * * ?")
     public void fetchData() {
     	List<Absence> listAbs =  absRepository.findByStatut(Statut.INITIALE);
 		listAbs.isEmpty();

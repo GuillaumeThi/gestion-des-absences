@@ -7,17 +7,17 @@ import { AccueilComponent } from './accueil/accueil.component'
 import { PlanningComponent } from './planning/planning.component'
 import { ModalComponent } from './modal/modal.component'
 import { UtilisateursService } from './service/utilisateur.service'
-// import { u1 } from 'angular-bootstrap-calendar'
-// import { u2 } from 'angular-ui-bootstrap'
-import {moment} from 'moment'
-// import { u3 } from 'mwl.calendar'
-// import { u4 } from 'ngAnimate'
-// import { u5 } from 'ui-bootstrap'
+import { EventService } from './event.service'
+import 'angular-ui-bootstrap'
+import 'angular-bootstrap-calendar'
+import 'angular-bootstrap-calendar/dist/css/angular-bootstrap-calendar.min.css'
+import { moment } from 'moment'
 
-angular.module('app', [RouteModule, 'mwl.calendar', 'ui.bootstrap']) //, [require('angular-bootstrap-calendar'), require('angular-ui-bootstrap')], ['mwl.calendar', 'ngAnimate', 'ui.bootstrap', 'colorpicker.module']
+angular.module('app', [RouteModule, 'mwl.calendar', 'ui.bootstrap'])
 .value('API_URL', API_URL)
 .value('moment', moment)
 .service('UtilisateursService', UtilisateursService)
+.service('EventService', EventService)
 .component('accueil', AccueilComponent)
 .component('planning', PlanningComponent)
 .component('modal', ModalComponent)
@@ -31,49 +31,79 @@ angular.module('app', [RouteModule, 'mwl.calendar', 'ui.bootstrap']) //, [requir
   calendarConfig.displayAllMonthEvents = true
   calendarConfig.showTimesOnWeekView = true
 }])
-.controller('KitchenSinkCtrl', function (moment, alert, calendarConfig) {
+.controller('KitchenSinkCtrl', function (moment, alert, calendarConfig, EventService) {
   var vm = this
 
     // These variables MUST be set as a minimum for the calendar to work
   vm.calendarView = 'month'
   vm.viewDate = new Date()
-  var actions = [{
-    label: '<i class=\'glyphicon glyphicon-pencil\'></i>',
-    onClick: function (args) {
-      alert.show('Edited', args.calendarEvent)
-    }
-  }, {
-    label: '<i class=\'glyphicon glyphicon-remove\'></i>',
-    onClick: function (args) {
-      alert.show('Deleted', args.calendarEvent)
-    }
-  }]
-  vm.events = [{
-    title: 'An event',
-    color: calendarConfig.colorTypes.warning,
-    startsAt: moment().startOf('week').subtract(2, 'days').add(8, 'hours').toDate(),
-    endsAt: moment().startOf('week').add(1, 'week').add(9, 'hours').toDate(),
-    draggable: true,
-    resizable: true,
-    actions: actions
-  }, {
-    title: '<i class="glyphicon glyphicon-asterisk"></i> <span class="text-primary">Another event</span>, with a <i>html</i> title',
-    color: calendarConfig.colorTypes.info,
-    startsAt: moment().subtract(1, 'day').toDate(),
-    endsAt: moment().add(5, 'days').toDate(),
-    draggable: true,
-    resizable: true,
-    actions: actions
-  }, {
-    title: 'This is a really long event title that occurs on every year',
-    color: calendarConfig.colorTypes.important,
-    startsAt: moment().startOf('day').add(7, 'hours').toDate(),
-    endsAt: moment().startOf('day').add(19, 'hours').toDate(),
-    recursOn: 'year',
-    draggable: true,
-    resizable: true,
-    actions: actions
-  }]
+
+  vm.events = []
+
+  EventService.getjourFeries().then(jourFeries => {
+    jourFeries.forEach(unJourFerie => {
+      if (unJourFerie.type === 'RTT_EMPLOYEUR') {
+        vm.events.push({
+          title: unJourFerie.type,
+          startsAt: moment(unJourFerie.date, 'DD-MM-YYYY'),
+          endsAt: moment(unJourFerie.date, 'DD-MM-YYYY'),
+          color: calendarConfig.colorTypes.important,
+          draggable: false,
+          resizable: false
+        })
+      }
+      if (unJourFerie.type === 'FERIE') {
+        vm.events.push({
+          title: unJourFerie.type,
+          startsAt: moment(unJourFerie.date, 'DD-MM-YYYY'),
+          endsAt: moment(unJourFerie.date, 'DD-MM-YYYY'),
+          color: calendarConfig.colorTypes.sucess,
+          draggable: false,
+          resizable: false
+        })
+      }
+    })
+  })
+  EventService.getAbs().then(absences => {
+    absences.forEach(uneAbs => {
+      switch (uneAbs.type) {
+        case 'RTT':
+          vm.events.push({
+            title: uneAbs.type,
+            startsAt: moment(uneAbs.dateDebut, 'DD-MM-YYYY'),
+            endsAt: moment(uneAbs.dateFin, 'DD-MM-YYYY'),
+            color: calendarConfig.colorTypes.special,
+            draggable: false,
+            resizable: false
+          })
+          break
+        case 'CONGE_PAYE':
+          vm.events.push({
+            title: uneAbs.type,
+            startsAt: moment(uneAbs.dateDebut, 'DD-MM-YYYY'),
+            endsAt: moment(uneAbs.dateFin, 'DD-MM-YYYY'),
+            color: calendarConfig.colorTypes.warning,
+            draggable: false,
+            resizable: false
+          })
+          break
+        case 'CONGE_SANS_SOLDE':
+          vm.events.push({
+            title: uneAbs.type + ' motif: ' + uneAbs.motif,
+            startsAt: moment(uneAbs.dateDebut, 'DD-MM-YYYY'),
+            endsAt: moment(uneAbs.dateFin, 'DD-MM-YYYY'),
+            color: calendarConfig.colorTypes.info,
+            draggable: false,
+            resizable: false
+          })
+          break
+      }
+    })
+  })
+
+  // title =  EventService.getjourFeries()[i].type
+  // startAt= EventService.getjourFeries().get(i).date
+  // endsAt= EventService.getjourFeries().get(i).date
 
   vm.cellIsOpen = false
 
@@ -145,10 +175,3 @@ angular.module('app', [RouteModule, 'mwl.calendar', 'ui.bootstrap']) //, [requir
     show: show
   }
 })
-
-
-
-
-
-
-

@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Utilisateur {
 	
@@ -12,7 +14,7 @@ public class Utilisateur {
 	int id;
 	
 	String matriculeCollab;
-	
+	@JsonIgnore
 	@OneToMany(mappedBy="utilisateur")
 	List<Absence> absences;
 	

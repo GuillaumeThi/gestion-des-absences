@@ -2,23 +2,27 @@ package dev.filter;
 
 import java.io.IOException;
 
-import javax.ws.rs.container.ContainerRequestContext;
-import javax.ws.rs.container.ContainerResponseContext;
-import javax.ws.rs.container.ContainerResponseFilter;
-import javax.ws.rs.ext.Provider;
+import javax.servlet.FilterChain;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
-@Provider
-public class FilterResponseCORS implements ContainerResponseFilter {
+import org.springframework.stereotype.Component;
+import org.springframework.web.filter.OncePerRequestFilter;
+
+@Component
+public class FilterResponseCORS extends OncePerRequestFilter {
 
 	@Override
-	public void filter(ContainerRequestContext requestContext, ContainerResponseContext responseContext)
-			throws IOException {
-		responseContext.getHeaders().add("Access-Control-Allow-Origin", "*");
-		responseContext.getHeaders().add("Access-Control-Allow-Headers", "origin, content-type, accept, authorization");
-		responseContext.getHeaders().add("Access-Control-Allow-Credentials", "true");
-		responseContext.getHeaders().add("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS, HEAD");
-		responseContext.getHeaders().add("Access-Control-Max-Age", "1209600");
-
-	}
+    protected void doFilterInternal(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, FilterChain filterChain)
+        throws ServletException, IOException {
+        
+        httpServletResponse.addHeader("Access-Control-Allow-Origin", "*");
+        
+        httpServletResponse.addHeader("Access-Control-Allow-Methods","GET, POST, PUT, DELETE, OPTIONS");
+        httpServletResponse.addHeader("Access-Control-Allow-Headers","origin, content-type, accept");
+        filterChain.doFilter(httpServletRequest, httpServletResponse);
+        
+    }
 
 }
