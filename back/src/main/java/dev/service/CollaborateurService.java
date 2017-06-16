@@ -12,6 +12,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import dev.entity.Collaborateur;
+import dev.entity.Utilisateur;
 
 @Service
 public class CollaborateurService {
@@ -42,4 +43,76 @@ public class CollaborateurService {
 		return null;
         
 	}
+	
+	/**
+     * Methode permettant de recupérer l'email du manager de l'utilisateur passé
+     * en paramètre
+     * 
+     * @param u
+     * @return
+     */
+    public String findEmailManager(Utilisateur u){
+    	
+    	List<Collaborateur> collabList=null;
+		try {
+			collabList = this.listerCollaborateurs();
+		} catch (JsonParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (JsonMappingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+    	String matriculeUser=u.getMatriculeCollab();
+    	String emailManager="";
+    	
+    	for(Collaborateur c: collabList){
+    		for(String s:c.getSubalternes()){
+    			if(s.equals(matriculeUser)){
+    				emailManager = c.getEmail();
+    				return emailManager;
+    			}
+    		}
+    	}
+    	
+    	return emailManager;
+    }
+    
+    /**
+     * Permet de trouver un collaborateur(base JSON)  depuis un utilisateur(base MySQL)
+     * 
+     * @param matricule
+     * @return
+     */
+    public Collaborateur findCollaborateurByMatricule(String matricule){
+    	
+    	List<Collaborateur> collabList=null;
+    	Collaborateur collab=null;
+		try {
+			collabList = this.listerCollaborateurs();
+		} catch (JsonParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (JsonMappingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	
+		for(Collaborateur c: collabList){
+			if(c.getMatricule().equals(matricule)){
+				collab=c;
+				break;
+			}
+		}
+		
+		
+    	return collab;
+    }
 }

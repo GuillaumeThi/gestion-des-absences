@@ -1,14 +1,13 @@
 package dev.script;
 
 import java.io.IOException;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Properties;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+//import org.slf4j.Logger;
+//import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -23,19 +22,24 @@ import dev.entity.Statut;
 import dev.entity.Utilisateur;
 import dev.repository.AbsenceRepository;
 import dev.repository.UtilisateurRepository;
-import dev.service.CalculAbsenceService;
 import dev.service.CollaborateurService;
 
 @Component
 public class TraitementDeNuit {
-
-	@Autowired AbsenceRepository absRepository;
-	@Autowired UtilisateurRepository userRepository;
-	@Autowired CalculAbsenceService calcAbs;
-	@Autowired CollaborateurService collabServ;
+	
+	//Injection des Repository
+	@Autowired private AbsenceRepository absRepository;
+	@Autowired private UtilisateurRepository userRepository;
+	
+	//Injection des Services
+	@Autowired private CollaborateurService collabServ;
+	
+	//Injection de l'environnement pour récupérer les propriétés
+	//du fichier application.properties
+	@Autowired private Environment env;
 	
 	//Logger pour test
-	private static final Logger log = LoggerFactory.getLogger(TraitementDeNuit.class);
+	//private static final Logger log = LoggerFactory.getLogger(TraitementDeNuit.class);
 
 
 	//La méthode qui exécute le script à 1 heure du matin tout les jours
@@ -45,21 +49,22 @@ public class TraitementDeNuit {
     	
     	//Parametrage du MailSender
     	JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
-    	mailSender.setHost("smtp.gmail.com");
-    	mailSender.setPort(25);
-    	mailSender.setUsername("clever.institut.test@gmail.com");
-    	mailSender.setPassword("formationdta");
+    	mailSender.setHost(env.getProperty("mailSender.host"));
+    	mailSender.setPort(Integer.parseInt(env.getProperty("mailSender.port")));
+    	mailSender.setUsername(env.getProperty("mailSender.username"));
+    	mailSender.setPassword(env.getProperty("mailSender.password"));
+
     	Properties prop = new Properties();
-    	prop.setProperty("mail.transport.protocol", "smtp");
-    	prop.setProperty("mail.smtp.auth", "true");
-    	prop.setProperty("mail.smtp.starttls.enable","true");
-        prop.setProperty("mail.debug","true");
-        prop.setProperty("mail.smtp.ssl.trust", "smtp.gmail.com");
+    	prop.setProperty("mail.transport.protocol", env.getProperty("mail.transport.protocol"));
+    	prop.setProperty("mail.smtp.auth", env.getProperty("mail.smtp.auth"));
+    	prop.setProperty("mail.smtp.starttls.enable",env.getProperty("mail.smtp.starttls.enable"));
+        prop.setProperty("mail.debug", env.getProperty("mail.debug"));
+        prop.setProperty("mail.smtp.ssl.trust", env.getProperty("mail.smtp.ssl.trust"));
         mailSender.setJavaMailProperties(prop);
+        
     	SimpleMailMessage msg = new SimpleMailMessage();
-    	
-    	//Date pour comparaison
-    	LocalDate ld = LocalDate.now();
+    	String textMsg;
+    	Collaborateur collab=null;
     	
     	//Récupération des absences au statut INITIALE
 
@@ -70,39 +75,27 @@ public class TraitementDeNuit {
 			
 			//Récupération de l'utilisateur lié à l'absence
 			Utilisateur u = userRepository.findById(a.getutilisateur().getId());
+
+			a.setStatut(Statut.EN_ATTENTE_VALIDATION); //On passe au statut EN_ATTENTE 
+			//log.info("decompte " + calcAbs.calculeCongeRestantUtilisateur(u,a.getType().toString()) );
+			absRepository.saveAndFlush(a); //On sauvegarde
 			
-			//Si la date de demande<date du jour
-			if(MethodeSurDate.dateEstPlusGrandeQue(a.getdateDebut(),ld)){
-				
-				//Si l'utilisateur à suffisament de congé restant
-				if(calcAbs.calculeCongeRestantUtilisateur(u)>0){
-					a.setStatut(Statut.EN_ATTENTE_VALIDATION); //On passe au statut EN_ATTENTE 
-					log.info("decompte " + calcAbs.calculeCongeRestantUtilisateur(u));
-					absRepository.saveAndFlush(a); //On sauvegarde
-					
-					msg.setFrom("clever.institut.test@gmail.com");
-					msg.setTo("franc.lavaud@gmail.com");
-					msg.setText("Salut toi !");
-					
-					mailSender.send(msg);
-				}
-				
-				//Si l'utilisateur n'a pas suffisament de congé la demande est rejetée
-				else{
-					a.setStatut(Statut.REJETEE);
-					absRepository.saveAndFlush(a);
-				}
-				
-			}
-			//Si la demande est faite le joure même ou plus tard que la date de début elle est rejetée
-			else{
-				a.setStatut(Statut.REJETEE);
-				absRepository.saveAndFlush(a);
-			}
-		}
+			collab=collabServ.findCollaborateurByMatricule(u.getMatriculeCollab());
+			
+			//Le message envoyer au manager
+			textMsg="Le collaborateur "+collab.getNom()+" "+collab.getPrenom()+" a effectué une demande d'absence. Veulliez valider ou refuser." ;
+			
+			msg.setFrom(env.getProperty("mailSender.username"));
+			msg.setTo("franc.lavaud@gmail.com"); //Pour les tests
+			//msg.setTo(collabServ.findEmailManager(u)); //Pour la Prod
+			msg.setText(textMsg);
+			
+			mailSender.send(msg);
+		}		
         
     }
     
+<<<<<<< HEAD
     /**
      * Methode permettant de recupérer l'email du manager de l'utilisateur passer
      * en paramètre
@@ -130,5 +123,8 @@ public class TraitementDeNuit {
     	
     	return emailManager;
     }
+=======
+    
+>>>>>>> USGDA017 - Traitement de nuit #20 - US en review
 
 }
