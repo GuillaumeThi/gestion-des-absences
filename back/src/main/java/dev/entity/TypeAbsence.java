@@ -34,4 +34,3 @@ public enum TypeAbsence {
         return VALUES[RANDOM.nextInt(SIZE)];
       }
 }
->>>>>>> USGDA017 - Traitement de nuit #20 - US en review - correction
