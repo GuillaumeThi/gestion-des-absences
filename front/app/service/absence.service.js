@@ -1,9 +1,8 @@
 export class AbsenceService {
-  constructor ($http, API_URL) {
+  constructor ($http, API_URL, publicPath) {
     this.$http = $http
-    this.apiUrl = API_URL + "/absences"
+    this.apiUrl = API_URL + publicPath + "absences"
   }
-
 
   listerAbsences () {
     return this.$http.get(this.apiUrl)
