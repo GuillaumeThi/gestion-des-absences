@@ -1,44 +1,43 @@
 export class LoginService {
-    constructor($http, $q, API_URL, $cookies){
-        this.$http = $http
-        this.$q = $q
-        this.$API_URL = API_URL
-        this.$cookies = $cookies
-    }
+  constructor ($http, $q, API_URL, $cookies, publicPath) {
+    this.$http = $http
+    this.$q = $q
+    this.$API_URL = API_URL + publicPath
+    this.$cookies = $cookies
+  }
 
-    connexion(email, password) { 
-        return this.$http.get(this.$API_URL + "/login?email=" + email+ "&password="+ password)
+  connexion (email, password) {
+    return this.$http.get(this.$API_URL + 'login?email=' + email + '&password=' + password)
         .then(
         rep => {
-            return rep.data
+          return rep.data
         },
-        err => { 
-            console.log("Connection impossible", err)
-            return this.$q.reject(err)
+        err => {
+          console.log('Connection impossible', err)
+          return this.$q.reject(err)
         }
         )
-    }
+  }
 
- loadCookies(){
-        if(!this.utilisateur)
-            this.utilisateur = this.$cookies.getObject('utilisateur')
-        return this.utilisateur
-    }
+  loadCookies () {
+    if (!this.utilisateur) { this.utilisateur = this.$cookies.getObject('utilisateur') }
+    return this.utilisateur
+  }
 
-    saveCookies(utilisateur) {
-        console.log( 'fghfhfgh', utilisateur)
-        console.log( 'cookie', this.$cookies)
-        this.$cookies.put('toto','toto')
-        this.$cookies.putObject('utilisateur', utilisateur)
-        
-        console.log( 'fghfhfgh', utilisateur)
+  saveCookies (utilisateur) {
+    console.log('fghfhfgh', utilisateur)
+    console.log('cookie', this.$cookies)
+    this.$cookies.put('toto', 'toto')
+    this.$cookies.putObject('utilisateur', utilisateur)
 
-        this.utilisateur = utilisateur
-    }
+    console.log('fghfhfgh', utilisateur)
 
-  deleteCookies() {
-        console.log("delete cookie")
-        this.utilisateur = undefined
-        this.$cookies.remove('utilisateur')
-    }
+    this.utilisateur = utilisateur
+  }
+
+  deleteCookies () {
+    console.log('delete cookie')
+    this.utilisateur = undefined
+    this.$cookies.remove('utilisateur')
+  }
 }
