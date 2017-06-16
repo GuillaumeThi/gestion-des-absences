@@ -7,6 +7,7 @@ import java.util.Properties;
 //import org.slf4j.Logger;
 //import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.env.Environment;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
@@ -27,6 +28,7 @@ import dev.service.CollaborateurService;
 @Component
 public class TraitementDeNuit {
 	
+
 	//Injection des Repository
 	@Autowired private AbsenceRepository absRepository;
 	@Autowired private UtilisateurRepository userRepository;
@@ -84,7 +86,7 @@ public class TraitementDeNuit {
 			textMsg="Le collaborateur "+collab.getNom()+" "+collab.getPrenom()+" a effectué une demande d'absence. Veulliez valider ou refuser." ;
 			
 			msg.setFrom(env.getProperty("mailSender.username"));
-			msg.setTo("franc.lavaud@gmail.com"); //Pour les tests
+			msg.setTo(env.getProperty("SimpleMailMessage.destinataire")); //Pour les tests
 			//msg.setTo(collabServ.findEmailManager(u)); //Pour la Prod
 			msg.setText(textMsg);
 			
