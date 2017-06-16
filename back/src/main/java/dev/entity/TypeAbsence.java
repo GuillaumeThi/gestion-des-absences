@@ -1,10 +1,11 @@
 package dev.entity;
 
-public enum TypeAbsence {
-	
-	CONGES_PAYES("Congés payés", true),
-    RTT_EMPLOYE("RTT employé", true),
-    CONGES_SANSS("Congés sans solde", true),
+import java.util.Random;
+
+public enum TypeAbsence {	
+	CONGE_PAYE("Congés payés", true),
+    RTT("RTT employé", true),
+    CONGE_SANS_SOLDE("Congés sans solde", true),
     MISSION("MISSION", false);
     
     private String libelle;
@@ -30,4 +31,14 @@ public enum TypeAbsence {
     public void setLibelle(String libelle) {
         this.libelle = libelle;
     }
+
+	
+	private static final TypeAbsence[] VALUES = values();
+	  private static final int SIZE = VALUES.length;
+	  private static final Random RANDOM = new Random();
+
+	  public static TypeAbsence getRandomTypeAbsence()  {
+	    return VALUES[RANDOM.nextInt(SIZE)];
+	  }
+
 }

@@ -1,7 +1,6 @@
 export function route ($routeProvider, $locationProvider) {
-  
   $locationProvider.html5Mode(true)
-  
+
   $routeProvider
     .when('/', {
       template: '<accueil></accueil>'
@@ -13,7 +12,7 @@ export function route ($routeProvider, $locationProvider) {
       templateUrl: '../modalContent.html'
     })
     .when('/login', {
-    template: '<login></login>'
+      template: '<login></login>'
     })
     .when('/absences', {
       template: '<gda-lister-absences></gda-lister-absences>'
@@ -25,4 +24,3 @@ export function route ($routeProvider, $locationProvider) {
       redirectTo: '/'
     })
 }
-
