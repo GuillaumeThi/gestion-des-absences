@@ -3,6 +3,8 @@ package dev.controller;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.ws.rs.PathParam;
+
 import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import dev.entity.Collaborateur;
+import dev.entity.Utilisateur;
+import dev.repository.UtilisateurRepository;
 import dev.service.CollaborateurService;
 
 @RestController
@@ -17,17 +21,25 @@ import dev.service.CollaborateurService;
 public class LoginController {
 
 	@Autowired private CollaborateurService collabserv;
+	@Autowired private UtilisateurRepository utiliRepo;
 
 	@GetMapping
-	public Collaborateur Authentification (String email, String password) {
+	public Utilisateur Authentification (@PathParam(value="email")String email, @PathParam(value="password")String password) {
 
 		List<Collaborateur> listcollab = collabserv.listerCollaborateurs();
 		Collaborateur collaborateur = listcollab
-				.stream().filter(p -> p.getEmail() == email).collect(Collectors.toList()).get(0);
-		
-		if(collaborateur == null){ return null;}
-		else if (!collaborateur.getPassword().equals(DigestUtils.sha1Hex(password))) return null;
-		else {return collaborateur;}
+				.stream().filter(p -> p.getEmail().equals(email)).collect(Collectors.toList()).get(0);
+
+		if(collaborateur == null){ 
+			return null;
+		}
+		else if (!collaborateur.getPassword().equals(DigestUtils.sha1Hex(password))){
+			return null;
+		}
 			
+		else {
+			return utiliRepo.findByMatriculeCollab(collaborateur.getMatricule()).get(0);
+		}
 	}
-}	
+}
+	

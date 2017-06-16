@@ -11,13 +11,13 @@ import dev.entity.Utilisateur;
 import dev.repository.UtilisateurRepository;
 
 @Service
-public class ProfilServiceDev implements ProfilService {
+public class InitService{
 
 	@Autowired CollaborateurService collabserv;
 	@Autowired UtilisateurRepository utilisateurrepo;
 	
 	
-	@Override
+	
 	public void init() {
 
 		utilisateurrepo.deleteAll();

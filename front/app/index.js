@@ -1,4 +1,5 @@
 import angular from 'angular'
+import ngCookies from 'angular-cookies'
 import RouteModule from 'angular-route'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'angular-ui-bootstrap'
@@ -9,6 +10,7 @@ import { route } from './app.route'
 
 import { AccueilComponent } from './accueil/accueil.component'
 import { LoginComponent } from './login/login.view'
+import { LoginService } from './login/login.service'
 import { PlanningComponent } from './planning/planning.component'
 import { ModalComponent } from './modal/modal.component'
 import { MenuComponent } from './menu/menu.component'
@@ -16,18 +18,16 @@ import { ListerAbsencesComponent } from './absence/lister-absences.component'
 import { AjouterAbsenceComponent } from './absence/ajouter-absence.component'
 
 import { planning } from './planning.controller'
-
 import { EventService } from './event.service'
 import { AbsenceService } from './service/absence.service'
 
 import { moment } from 'moment'
 
-angular.module('app', [RouteModule, 'mwl.calendar' , 'ui.bootstrap'])
-
+angular.module('app', [RouteModule, 'mwl.calendar', 'ui.bootstrap', ngCookies])
 .value('API_URL', API_URL)
 .value('moment', moment)
-
 .service('EventService', EventService)
+.service('LoginService', LoginService)
 .service('AbsenceService', AbsenceService)
 
 .component('menu', MenuComponent)
