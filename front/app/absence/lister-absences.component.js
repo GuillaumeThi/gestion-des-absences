@@ -11,7 +11,14 @@ class controller {
     $onInit () {
 
         this.AbsenceService.listerAbsences()
-            .then(absences => this.absences = absences)
+            .then(absences =>  {
+                this.absences = absences
+                this.absences.forEach(absence => {
+                                        absence.dateDebut = this.AbsenceService.parser(absence.dateDebut)
+                                        absence.dateFin = this.AbsenceService.parser(absence.dateFin)
+                                    })
+                return this.absences
+        })
     }
 
 }
@@ -23,4 +30,3 @@ export let ListerAbsencesComponent = {
         absences: '<',
     }
 }
-

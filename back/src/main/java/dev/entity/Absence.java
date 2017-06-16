@@ -4,6 +4,8 @@ import java.time.LocalDate;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 
 @Entity
 public class Absence {
@@ -12,7 +14,9 @@ public class Absence {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	int id ;
 	
+	@JsonFormat(pattern="dd/MM/yyyy")
 	LocalDate dateDebut;
+	@JsonFormat(pattern="dd/MM/yyyy")
 	LocalDate dateFin;
 
 	@Enumerated(EnumType.STRING)

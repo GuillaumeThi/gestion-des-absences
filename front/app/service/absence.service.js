@@ -5,12 +5,20 @@ export class AbsenceService {
   }
 
   listerAbsences () {
-    return this.$http.get(this.apiUrl)
+    let absences = this.$http.get(this.apiUrl)
       .then(response => response.data)
+
+      console.log(absences);
+      return absences;
   }
 
   listerTypesAbsence () {
     return this.$http.get(this.apiUrl + "/nouvelle-demande")
       .then(response => response.data)
   }
+
+  parser (date) {
+  	return date.dayOfMonth + " " + date.month + " " + date.year;
+  }
+
 }
