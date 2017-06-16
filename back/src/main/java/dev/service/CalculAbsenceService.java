@@ -65,15 +65,15 @@ public class CalculAbsenceService {
 		int decompteDeJour = 0;
 		
 		//Séléction du type de congé
-		if(typeAbsence.equals(TypeAbsence.CONGE_PAYE.toString()) ){
+		if(typeAbsence.equals(TypeAbsence.CONGES_PAYES.toString()) ){
 			decompteDeJour = Integer.parseInt(env.getProperty("nbr.conge.paye"));
 		}
-		else if(typeAbsence.equals(TypeAbsence.RTT.toString()) ){
+		else if(typeAbsence.equals(TypeAbsence.RTT_EMPLOYE.toString()) ){
 			List<JourFerie> listJF = jfRepository.findByType(TypeJourFerie.RTT_EMPLOYEUR);
 			int nbrJourRTTEmployeur = listJF.size();
 			decompteDeJour = Integer.parseInt(env.getProperty("nbr.RTT.employe"))+(Integer.parseInt(env.getProperty("nbr.RTT.employeur"))-nbrJourRTTEmployeur);
 		}
-		else if(typeAbsence.equals(TypeAbsence.CONGE_SANS_SOLDE.toString()) ){
+		else if(typeAbsence.equals(TypeAbsence.CONGES_SANSS.toString()) ){
 			decompteDeJour = Integer.MAX_VALUE;
 		}
 		

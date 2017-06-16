@@ -41,7 +41,6 @@ public class TraitementDeNuit {
 	//Logger pour test
 	//private static final Logger log = LoggerFactory.getLogger(TraitementDeNuit.class);
 
-
 	//La méthode qui exécute le script à 1 heure du matin tout les jours
     @Scheduled(cron = "0/5 * * * * ?") //Schedule pour test
     //@Scheduled(cron = "0 0 1 * * ?") //Schedule pour prod
@@ -67,7 +66,6 @@ public class TraitementDeNuit {
     	Collaborateur collab=null;
     	
     	//Récupération des absences au statut INITIALE
-
     	List<Absence> listAbs =  absRepository.findByStatut(Statut.INITIALE);
 		
     	//Le traitement de nuit
@@ -95,36 +93,6 @@ public class TraitementDeNuit {
         
     }
     
-<<<<<<< HEAD
-    /**
-     * Methode permettant de recupérer l'email du manager de l'utilisateur passer
-     * en paramètre
-     * 
-     * @param u
-     * @return
-     */
-    public String findEmailManager(Utilisateur u){
-    	
-    	List<Collaborateur> collabList=null;
-
-		collabList = collabServ.listerCollaborateurs();
-		
-    	String matriculeUser=u.getMatriculeCollab();
-    	String emailManager="";
-    	
-    	a: for(Collaborateur c: collabList){
-    		for(String s:c.getSubalternes()){
-    			if(s.equals(matriculeUser)){
-    				emailManager = c.getEmail();
-    				break a;
-    			}
-    		}
-    	}
-    	
-    	return emailManager;
-    }
-=======
     
->>>>>>> USGDA017 - Traitement de nuit #20 - US en review
 
 }

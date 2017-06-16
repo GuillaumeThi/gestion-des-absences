@@ -54,19 +54,9 @@ public class CollaborateurService {
     public String findEmailManager(Utilisateur u){
     	
     	List<Collaborateur> collabList=null;
-		try {
-			collabList = this.listerCollaborateurs();
-		} catch (JsonParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (JsonMappingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		
+		collabList = this.listerCollaborateurs();
+
     	String matriculeUser=u.getMatriculeCollab();
     	String emailManager="";
     	
@@ -92,19 +82,9 @@ public class CollaborateurService {
     	
     	List<Collaborateur> collabList=null;
     	Collaborateur collab=null;
-		try {
-			collabList = this.listerCollaborateurs();
-		} catch (JsonParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (JsonMappingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-    	
+
+		collabList = this.listerCollaborateurs();
+		
 		for(Collaborateur c: collabList){
 			if(c.getMatricule().equals(matricule)){
 				collab=c;
