@@ -9,17 +9,24 @@ import org.springframework.web.bind.annotation.RestController;
 
 import dev.entity.Absence;
 import dev.repository.AbsenceRepository;
+import dev.service.AbsenceService;
 
 @RestController
 @RequestMapping("/absences")
 public class AbsenceController {
 
 	@Autowired private AbsenceRepository absenceRepo;
+	@Autowired private AbsenceService absenceService;
 
 	@GetMapping
-	public List<Absence> listerabsences() {
+	public List<Absence> listerAbsences() {
 
-	return this.absenceRepo.findAll();
+		return this.absenceRepo.findAll();
+	}
+	
+	@GetMapping(path="/nouvelle-demande")
+	public List<String> listerTypesAbsence() {
 
+		return this.absenceService.listerTypesAbsence();
 	}
 }	

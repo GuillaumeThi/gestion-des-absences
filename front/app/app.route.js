@@ -12,14 +12,14 @@ export function route ($routeProvider, $locationProvider) {
     .when('/modalContent.html', {
       templateUrl: '../modalContent.html'
     })
-    .when('/absence', {
-      template: '<gda-lister-absences></gda-lister-absences>'
-    })
-    .when('/absence/nouvelle-demande', {
-      template: '<gda-ajouter-absence></gda-ajouter-absence>'
-    })
     .when('/login', {
     template: '<login></login>'
+    })
+    .when('/absences', {
+      template: '<gda-lister-absences></gda-lister-absences>'
+    })
+    .when('/absences/nouvelle-demande', {
+      template: '<gda-ajouter-absence></gda-ajouter-absence>'
     })
     .otherwise({
       redirectTo: '/'

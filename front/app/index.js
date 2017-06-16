@@ -12,7 +12,8 @@ import { LoginComponent } from './login/login.view'
 import { PlanningComponent } from './planning/planning.component'
 import { ModalComponent } from './modal/modal.component'
 import { MenuComponent } from './menu/menu.component'
-import { AbsenceComponent } from './absence/absence.component'
+import { ListerAbsencesComponent } from './absence/lister-absences.component'
+import { AjouterAbsenceComponent } from './absence/ajouter-absence.component'
 
 import { planning } from './planning.controller'
 
@@ -21,7 +22,7 @@ import { AbsenceService } from './service/absence.service'
 
 import { moment } from 'moment'
 
-angular.module('app', [RouteModule, 'mwl.calendar', 'ui.bootstrap'])
+angular.module('app', [RouteModule, 'mwl.calendar' , 'ui.bootstrap'])
 
 .value('API_URL', API_URL)
 .value('moment', moment)
@@ -34,7 +35,8 @@ angular.module('app', [RouteModule, 'mwl.calendar', 'ui.bootstrap'])
 .component('planning', PlanningComponent)
 .component('modal', ModalComponent)
 .component('login', LoginComponent)
-.component('gdaAbsence', AbsenceComponent)
+.component('gdaListerAbsences', ListerAbsencesComponent)
+.component('gdaAjouterAbsence', AjouterAbsenceComponent)
 
 .config(route, ['calendarConfig', function (calendarConfig) {
   console.log(calendarConfig)

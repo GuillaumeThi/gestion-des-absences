@@ -37,6 +37,7 @@ public class TraitementDeNuit {
 	//Logger pour test
 	private static final Logger log = LoggerFactory.getLogger(TraitementDeNuit.class);
 
+
 	//La méthode qui exécute le script à 1 heure du matin tout les jours
     @Scheduled(cron = "0/5 * * * * ?") //Schedule pour test
     //@Scheduled(cron = "0 0 1 * * ?") //Schedule pour prod
@@ -61,6 +62,7 @@ public class TraitementDeNuit {
     	LocalDate ld = LocalDate.now();
     	
     	//Récupération des absences au statut INITIALE
+
     	List<Absence> listAbs =  absRepository.findByStatut(Statut.INITIALE);
 		
     	//Le traitement de nuit
@@ -111,18 +113,8 @@ public class TraitementDeNuit {
     public String findEmailManager(Utilisateur u){
     	
     	List<Collaborateur> collabList=null;
-		try {
-			collabList = collabServ.listerCollaborateurs();
-		} catch (JsonParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (JsonMappingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+
+		collabList = collabServ.listerCollaborateurs();
 		
     	String matriculeUser=u.getMatriculeCollab();
     	String emailManager="";

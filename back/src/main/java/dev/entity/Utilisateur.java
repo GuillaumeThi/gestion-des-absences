@@ -14,6 +14,7 @@ public class Utilisateur {
 	int id;
 	
 	String matriculeCollab;
+
 	@JsonIgnore
 	@OneToMany(mappedBy="utilisateur")
 	List<Absence> absences;

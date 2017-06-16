@@ -1,20 +1,17 @@
-const API_URL_1 = 'http://localhost:8080/sgp/api/departements'
-const API_URL_2 = 'http://localhost:8080/sgp/api/collaborateurs'
-
 export class AbsenceService {
-  constructor ($http, $q) {
+  constructor ($http, API_URL) {
     this.$http = $http
-    this.$q = $q
+    this.apiUrl = API_URL + "/absences"
   }
 
 
-  /*getDepartements () {
-    return this.$http.get(API_URL_1)
+  listerAbsences () {
+    return this.$http.get(this.apiUrl)
       .then(response => response.data)
   }
 
-  getCollaborateurs () {
-    return this.$http.get(API_URL_2)
+  listerTypesAbsence () {
+    return this.$http.get(this.apiUrl + "/nouvelle-demande")
       .then(response => response.data)
-  }*/
+  }
 }
