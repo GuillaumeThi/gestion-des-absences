@@ -38,7 +38,7 @@ angular.module('app', [RouteModule, 'mwl.calendar', 'ui.bootstrap', ngCookies])
 .component('login', LoginComponent)
 .component('gdaListerAbsences', ListerAbsencesComponent)
 .component('gdaAjouterAbsence', AjouterAbsenceComponent)
-.component('authentification',AuthentifComponent)
+.component('authentification', AuthentifComponent)
 
 .config(route, ['calendarConfig', function (calendarConfig) {
   console.log(calendarConfig)

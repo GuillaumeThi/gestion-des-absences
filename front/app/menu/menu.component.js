@@ -2,10 +2,9 @@ import './menu.component.css'
 import template from './menu.component.html'
 
 class controller {
-  constructor () {
+  constructor (LoginService) {
     this.titre = 'Menu'
     this.utilisateur = LoginService.loadCookies()
-
   }
 }
 

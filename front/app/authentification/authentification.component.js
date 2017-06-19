@@ -5,9 +5,7 @@ class controller {
     this.LoginService = LoginService
     this.$location = $location
 
-
-
-   $scope.$on('$routeChangeStart', (angularEvent, newUrl) => {
+    $scope.$on('$routeChangeStart', (angularEvent, newUrl) => {
       let utilisateur = this.LoginService.LoadCookie()
       console.log('authentif utilisateur', utilisateur)
       if (newUrl.requireAuth) {
