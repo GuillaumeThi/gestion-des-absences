@@ -39,12 +39,13 @@ public class TraitementDeNuit {
 	//Injection de l'environnement pour récupérer les propriétés
 	//du fichier application.properties
 	@Autowired private Environment env;
+	//final String s=env.getProperty("cron.traitement.de.nuit");
 	
 	//Logger pour test
 	//private static final Logger log = LoggerFactory.getLogger(TraitementDeNuit.class);
 
 	//La méthode qui exécute le script à 1 heure du matin tout les jours
-	@Scheduled(cron="${cron.traitement.de.nuit}") //Schedule pour test
+    @Scheduled(cron="${cron.traitement.de.nuit}") //Schedule pour test
     //@Scheduled(cron = "0 0 1 * * ?") //Schedule pour prod
     public void fetchData(){
     	

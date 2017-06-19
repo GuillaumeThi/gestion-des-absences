@@ -29,8 +29,6 @@ public class InitService{
 	@Autowired AbsenceRepository absR;
 	@Autowired JourFerieRepository jFR;
 	
-	
-	
 	public void init() {
 
 		absR.deleteAll();
