@@ -17,12 +17,15 @@ public enum TypeAbsence {
     public boolean isActif() {
         return actif;
     }
+
     public void setActif(boolean actif) {
         this.actif = actif;
     }
+
     public String getLibelle() {
         return libelle;
     }
+
     public void setLibelle(String libelle) {
         this.libelle = libelle;
     }

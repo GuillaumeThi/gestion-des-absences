@@ -1,4 +1,4 @@
-export function planning (moment, alert, calendarConfig, EventService) {
+export function planning (moment, alert, calendarConfig, EventService, LoginService) {
   var vm = this
 
     // These variables MUST be set as a minimum for the calendar to work
@@ -32,8 +32,9 @@ export function planning (moment, alert, calendarConfig, EventService) {
     })
   })
   EventService.getAbs().then(absences => {
+    console.log(LoginService.getId(LoginService.loadCookies()))
     absences.forEach(uneAbs => {
-      if (uneAbs.utilisateur.id === 604) { // modifié 1 par l'id récupérer du cookie authentif
+      if (uneAbs.utilisateur.id === LoginService.getId(LoginService.loadCookies())) { // modifié 1 par l'id récupérer du cookie authentif
         switch (uneAbs.type) {
           case 'RTT':
             vm.events.push({

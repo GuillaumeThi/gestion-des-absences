@@ -15,7 +15,7 @@ import { PlanningComponent } from './planning/planning.component'
 import { ModalComponent } from './modal/modal.component'
 import { ListerAbsencesComponent } from './absence/lister-absences.component'
 import { AjouterAbsenceComponent } from './absence/ajouter-absence.component'
-
+import { MenuComponent } from './menu/menu.component'
 import { planning } from './planning.controller'
 import { EventService } from './event.service'
 import { AbsenceService } from './service/absence.service'
@@ -30,6 +30,7 @@ angular.module('app', [RouteModule, 'mwl.calendar', 'ui.bootstrap', ngCookies])
 .service('LoginService', LoginService)
 .service('AbsenceService', AbsenceService)
 
+.component('menu', MenuComponent)
 .component('accueil', AccueilComponent)
 .component('planning', PlanningComponent)
 .component('modal', ModalComponent)

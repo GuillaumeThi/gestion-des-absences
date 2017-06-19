@@ -18,21 +18,18 @@ export class LoginService {
         }
         )
   }
-
+  getId (utilisateur) {
+    return utilisateur.id
+  }
   loadCookies () {
     if (!this.utilisateur) { this.utilisateur = this.$cookies.getObject('utilisateur') }
     return this.utilisateur
   }
 
   saveCookies (utilisateur) {
-    console.log('fghfhfgh', utilisateur)
-    console.log('cookie', this.$cookies)
-    this.$cookies.put('toto', 'toto')
     this.$cookies.putObject('utilisateur', utilisateur)
-
-    console.log('fghfhfgh', utilisateur)
-
     this.utilisateur = utilisateur
+    console.log(this.utilisateur)
   }
 
   deleteCookies () {
