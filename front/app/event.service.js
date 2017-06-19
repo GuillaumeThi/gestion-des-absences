@@ -14,7 +14,7 @@ export class EventService {
       return this.$q.resolve(this.jourFeries)
     }
 
-    return this.$http.get(API_URL)
+    return this.$http.get(this.API_URL)
         .then(response => response.data)
   }
   // return promise of absences
@@ -23,7 +23,7 @@ export class EventService {
       return this.$q.resolve(this.absences)
     }
 
-    return this.$http.get(API_URL2)
+    return this.$http.get(this.API_URL2)
         .then(response => response.data)
   }
 }
