@@ -18,6 +18,7 @@ class controller {
               return this.absences
             })
   }
+
 }
 
 export let ListerAbsencesComponent = {

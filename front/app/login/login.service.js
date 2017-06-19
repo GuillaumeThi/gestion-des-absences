@@ -22,6 +22,7 @@ export class LoginService {
   }
   loadCookies () {
     if (!this.utilisateur) { this.utilisateur = this.$cookies.getObject('utilisateur') }
+      console.log(this.utilisateur)
     return this.utilisateur
   }
 

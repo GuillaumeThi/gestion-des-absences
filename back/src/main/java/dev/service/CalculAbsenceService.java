@@ -59,7 +59,7 @@ public class CalculAbsenceService {
 	 * @param u
 	 * @return
 	 */
-	public int calculeCongeRestantUtilisateur(Utilisateur u,String typeAbsence){
+	public Integer calculeCongeRestantUtilisateur(Utilisateur u,String typeAbsence){
 		
 		List<Absence> listAbsUtilisateurValide = absenceRepository.findByUtilisateurIdAndTypeAndStatut(u.getId(),TypeAbsence.valueOf(typeAbsence), Statut.VALIDEE);
 		int decompteDeJour = 0;

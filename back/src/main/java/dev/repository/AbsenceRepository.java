@@ -13,6 +13,8 @@ public interface AbsenceRepository extends JpaRepository<Absence, Integer>{
 	List<Absence> findByStatut(Statut statut);
 
 	List<Absence> findByUtilisateurIdAndType(int id, TypeAbsence type);
+	
+	List<Absence> findByUtilisateurId(int id);
 
 	List<Absence> findByUtilisateurIdAndTypeAndStatut(int id, TypeAbsence Type,Statut statut);
 }

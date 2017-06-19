@@ -6,14 +6,22 @@ export class AbsenceService {
   }
 
   listerAbsencesUtilisateurCourant () {
-    let absences = this.$http.get(this.apiUrl)
+
+  	let user = this.loginService.loadCookies()
+    let absences = this.$http.get(this.apiUrl + "?matricule=" + user.matriculeCollab)
       .then(response => {
-        return response.data.filter(absence => absence.utilisateur.id === this.loginService.getId(this.loginService.loadCookies()))
+      	console.log(response.data)
+      	return response.data.absences.filter(absence => absence.utilisateur.id === this.loginService.getId(user))
       })
 
-    console.log(absences)
-    return absences
+      return absences;
   }
+
+/*  getCompteursConges () {
+  	return this.$http.get(this.apiUrl + "/compteur?matricule=" + this.LoginService.loadCookies().matriculeCollab)
+  	.then(response => response.data)
+  }*/
+
   listerTypesAbsence () {
     return this.$http.get(this.apiUrl + '/nouvelle-demande')
       .then(response => response.data)
