@@ -37,4 +37,5 @@ export class LoginService {
     this.utilisateur = undefined
     this.$cookies.remove('utilisateur')
   }
+
 }

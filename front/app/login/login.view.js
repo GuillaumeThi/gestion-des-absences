@@ -16,4 +16,6 @@ export let LoginComponent = {
   template,
   controller,
   bindings: {}
+
 }
+

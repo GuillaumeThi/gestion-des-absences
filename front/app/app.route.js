@@ -3,33 +3,24 @@ export function route ($routeProvider, $locationProvider) {
 
   $routeProvider
     .when('/', {
-      template: '<accueil></accueil>',
-      requireAuth: true,
-      autoriseRole: ['MANAGER', 'ADMIN', 'COLLABORATEUR']
+      template: '<accueil></accueil>'
     })
     .when('/planning', {
-      template: '<planning></planning>',
-      requireAuth: true,
-      autoriseRole: ['MANAGER', 'ADMIN', 'COLLABORATEUR']
+      template: '<planning></planning>'
     })
     .when('/modalContent.html', {
-      templateUrl: '../modalContent.html',
-      requireAuth: true,
-      autoriseRole: ['MANAGER', 'ADMIN', 'COLLABORATEUR']
+      templateUrl: '../modalContent.html'
     })
     .when('/login', {
       template: '<login></login>'
-
     })
     .when('/absences', {
       template: '<gda-lister-absences></gda-lister-absences>'
     })
     .when('/absences/nouvelle-demande', {
-      template: '<gda-ajouter-absence></gda-ajouter-absence>',
-      requireAuth: true,
-      autoriseRole: ['MANAGER', 'ADMIN', 'COLLABORATEUR']
+      template: '<gda-ajouter-absence></gda-ajouter-absence>'
     })
     .otherwise({
-      redirectTo: '/login'
+      redirectTo: '/'
     })
 }

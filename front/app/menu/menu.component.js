@@ -2,9 +2,10 @@ import './menu.component.css'
 import template from './menu.component.html'
 
 class controller {
-  constructor (LoginService) {
+  constructor () {
     this.titre = 'Menu'
     this.utilisateur = LoginService.loadCookies()
+
   }
 }
 
@@ -14,4 +15,5 @@ export let MenuComponent = {
   bindings: {
     utilisateur: '<'
   }
+
 }
