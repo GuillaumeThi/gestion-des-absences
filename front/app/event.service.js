@@ -1,11 +1,11 @@
-const API_URL = 'http://localhost:8080/gestion-des-absences/jourFerie'
-const API_URL2 = 'http://localhost:8080/gestion-des-absences/absences'
 export class EventService {
-  constructor ($http, $q) {
+  constructor ($http, $q, API_URL, publicPath) {
     this.$http = $http
     this.$q = $q
     this.jourFeries = []
     this.absences = []
+    this.API_URL = API_URL + publicPath + 'jourFerie'
+    this.API_URL2 = API_URL + publicPath + 'absences'
   }
 
     // return promise of jourFeries
