@@ -16,6 +16,7 @@ import { ModalComponent } from './modal/modal.component'
 import { ListerAbsencesComponent } from './absence/lister-absences.component'
 import { AjouterAbsenceComponent } from './absence/ajouter-absence.component'
 import { MenuComponent } from './menu/menu.component'
+import { AuthentifComponent } from './authentification/authentification.component'
 import { planning } from './planning.controller'
 import { EventService } from './event.service'
 import { AbsenceService } from './service/absence.service'
@@ -37,6 +38,7 @@ angular.module('app', [RouteModule, 'mwl.calendar', 'ui.bootstrap', ngCookies])
 .component('login', LoginComponent)
 .component('gdaListerAbsences', ListerAbsencesComponent)
 .component('gdaAjouterAbsence', AjouterAbsenceComponent)
+.component('authentification',AuthentifComponent)
 
 .config(route, ['calendarConfig', function (calendarConfig) {
   console.log(calendarConfig)

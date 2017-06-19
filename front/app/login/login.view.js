@@ -10,6 +10,7 @@ class controller {
         .then(utilisateur => this.LoginService.saveCookies(utilisateur),
         this.$location.path('/'))
   }
+
 }
 
 export let LoginComponent = {
