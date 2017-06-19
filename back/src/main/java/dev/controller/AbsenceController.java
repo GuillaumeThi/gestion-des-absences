@@ -26,7 +26,7 @@ public class AbsenceController {
 	@Autowired private CalculAbsenceService compteurService;
 
 	@GetMapping
-	public Map<String, Object> listerAbsences(@PathParam(value="matricule")String matricule) {
+	public Map<String, Object> listerAbsences(@PathParam(value="matricule") String matricule) {
 		System.out.println(matricule);
 		Map<String, Object> map = new HashMap<>();
 		map.put("absences", this.absenceRepo.findAll());
@@ -41,9 +41,9 @@ public class AbsenceController {
 		return this.absenceService.listerTypesAbsence();
 	}
 	
-	@GetMapping(path="/compteur")
-	public Integer getCompteursConges() {
-
-		return this.compteurService.calculeCongeRestantUtilisateur(u, typeAbsence);
-	}
+//	@GetMapping(path="/compteur")
+//	public Integer getCompteursConges() {
+//
+//		return this.compteurService.calculeCongeRestantUtilisateur(u, typeAbsence);
+//	}
 }	

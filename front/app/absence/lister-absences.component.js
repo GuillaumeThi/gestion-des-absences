@@ -1,10 +1,9 @@
 import template from './lister-absences.component.html'
 
 class controller {
-  constructor (AbsenceService, $location, $scope) {
+  constructor (AbsenceService, $location) {
     this.AbsenceService = AbsenceService
     this.$location = $location
-    this.$scope = $scope
   }
 
   $onInit () {
