@@ -11,8 +11,6 @@ class controller {
 export let MenuComponent = {
   template,
   controller,
-  bindings: {
-    utilisateur: '<'
-  }
+  bindings: {}
 
 }

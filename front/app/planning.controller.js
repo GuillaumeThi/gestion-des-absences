@@ -34,7 +34,7 @@ export function planning (moment, alert, calendarConfig, EventService, LoginServ
   EventService.getAbs().then(absences => {
     console.log(LoginService.getId(LoginService.loadCookies()))
     absences.forEach(uneAbs => {
-      if (uneAbs.utilisateur.id === LoginService.getId(LoginService.loadCookies())) { // modifié 1 par l'id récupérer du cookie authentif
+      if (uneAbs.utilisateur.id === LoginService.getId(LoginService.loadCookies())) {
         switch (uneAbs.type) {
           case 'RTT':
             vm.events.push({
