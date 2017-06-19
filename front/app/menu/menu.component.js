@@ -12,6 +12,6 @@ export let MenuComponent = {
   template,
   controller,
   bindings: {
-    utilisateur: '='
+    utilisateur: '<'
   }
 }

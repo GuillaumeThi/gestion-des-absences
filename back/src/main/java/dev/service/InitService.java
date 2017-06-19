@@ -40,9 +40,13 @@ public class InitService{
 		List<Collaborateur> listcollab = collabserv.listerCollaborateurs();
 		for (Collaborateur collaborateur : listcollab) {
 			if(collaborateur == listcollab.get(0)) {
-				utilisateurrepo.save(new Utilisateur(collaborateur.getMatricule(), null, Role.ADMIN));
+				Utilisateur user = new Utilisateur(collaborateur.getMatricule(), null, Role.ADMIN);
+				utilisateurrepo.save(user);
+				absR.saveAndFlush(new Absence( LocalDate.parse("2017-06-20"), LocalDate.parse("2017-06-21"), TypeAbsence.getRandomTypeAbsence(), Statut.INITIALE, "",user));
 			}else if (collaborateur == listcollab.get(1)){
-				utilisateurrepo.save(new Utilisateur(collaborateur.getMatricule(), null, Role.MANAGER));
+				Utilisateur user = new Utilisateur(collaborateur.getMatricule(), null, Role.MANAGER);
+				utilisateurrepo.save(user);
+				absR.saveAndFlush(new Absence( LocalDate.parse("2017-06-20"), LocalDate.parse("2017-06-21"), TypeAbsence.getRandomTypeAbsence(), Statut.INITIALE, "",user));
 			}else {
 				Utilisateur user = new Utilisateur(collaborateur.getMatricule(), null, Role.COLLABORATEUR);
 				utilisateurrepo.save(user);
