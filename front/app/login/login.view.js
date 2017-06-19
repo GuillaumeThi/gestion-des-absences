@@ -7,8 +7,10 @@ class controller {
   }
   connexion (form) {
     this.LoginService.connexion(this.username, this.password)
-        .then(utilisateur => this.LoginService.saveCookies(utilisateur),
-        this.$location.path('/'))
+        .then(utilisateur => {
+          this.LoginService.saveCookies(utilisateur)
+          this.$location.path('/absences')
+        })
   }
 }
 

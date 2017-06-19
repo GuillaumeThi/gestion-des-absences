@@ -1,20 +1,21 @@
 
 class controller {
   constructor (LoginService, $location, $scope) {
-    console.log('constructor')
+    //console.log('constructor')
     this.LoginService = LoginService
     this.$location = $location
+    this.utilisateur=""
 
-    $scope.$on('$routeChangeStart', (angularEvent, newUrl) => {
-      let utilisateur = this.LoginService.LoadCookie()
-      console.log('authentif utilisateur', utilisateur)
+   $scope.$on('$routeChangeStart', (angularEvent, newUrl) => {
+      this.utilisateur = this.LoginService.loadCookies()
+      //console.log('authentif utilisateur', this.utilisateur)
       if (newUrl.requireAuth) {
-        if (utilisateur === undefined || !newUrl.autoriseRole.includes(utilisateur.type)) {
-          console.log('nope!')
+        if (this.utilisateur === undefined || !newUrl.autoriseRole.includes(this.utilisateur.role)) {
+          //console.log('Et non!')
           $location.path('login')
         }
       } else {
-        console.log('free')
+        //console.log('cest bon !')
       }
     })
   }

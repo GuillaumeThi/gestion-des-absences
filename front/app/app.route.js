@@ -3,10 +3,14 @@ export function route ($routeProvider, $locationProvider) {
 
   $routeProvider
     .when('/', {
-      template: '<accueil></accueil>'
+      template: '<header><menu></menu></header> <accueil></accueil>',
+      requireAuth: true,
+      autoriseRole: ['MANAGER', 'ADMIN', 'COLLABORATEUR']
     })
     .when('/planning', {
-      template: '<planning></planning>'
+      template: '<header><menu></menu></header> <planning></planning>',
+      requireAuth: true,
+      autoriseRole: ['MANAGER', 'ADMIN', 'COLLABORATEUR']
     })
     .when('/modalContent.html', {
       templateUrl: '../modalContent.html'
@@ -15,10 +19,14 @@ export function route ($routeProvider, $locationProvider) {
       template: '<login></login>'
     })
     .when('/absences', {
-      template: '<gda-lister-absences></gda-lister-absences>'
+      template: '<header><menu></menu></header> <gda-lister-absences></gda-lister-absences>',
+      requireAuth: true,
+      autoriseRole: ['MANAGER', 'ADMIN', 'COLLABORATEUR']
     })
     .when('/absences/nouvelle-demande', {
-      template: '<gda-ajouter-absence></gda-ajouter-absence>'
+      template: '<header><menu></menu></header> <gda-ajouter-absence></gda-ajouter-absence>',
+      requireAuth: true,
+      autoriseRole: ['MANAGER', 'ADMIN', 'COLLABORATEUR']
     })
     .otherwise({
       redirectTo: '/'

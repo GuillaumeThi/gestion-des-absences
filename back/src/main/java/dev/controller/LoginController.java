@@ -26,20 +26,16 @@ public class LoginController {
 	@GetMapping
 	public Utilisateur Authentification (@PathParam(value="email")String email, @PathParam(value="password")String password) {
 
-		List<Collaborateur> listcollab = collabserv.listerCollaborateurs();
-		Collaborateur collaborateur = listcollab
-				.stream().filter(p -> p.getEmail().equals(email)).collect(Collectors.toList()).get(0);
+		List<Collaborateur> listcollab = collabserv.listerCollaborateurs()
+				.stream().filter(p -> p.getEmail().equals(email)).collect(Collectors.toList());
 
-		if(collaborateur == null){ 
-			return null;
+		if(!listcollab.isEmpty()){ 
+			Collaborateur collaborateur=listcollab.get(0);
+			if (collaborateur.getPassword().equals(DigestUtils.sha1Hex(password))){
+				return utiliRepo.findByMatriculeCollab(collaborateur.getMatricule()).get(0);
+			}
 		}
-		else if (!collaborateur.getPassword().equals(DigestUtils.sha1Hex(password))){
-			return null;
-		}
-			
-		else {
-			return utiliRepo.findByMatriculeCollab(collaborateur.getMatricule()).get(0);
-		}
+		return null;
 	}
 }
 	

@@ -13,7 +13,6 @@ export class LoginService {
           return rep.data
         },
         err => {
-          console.log('Connection impossible', err)
           return this.$q.reject(err)
         }
         )
@@ -29,11 +28,11 @@ export class LoginService {
   saveCookies (utilisateur) {
     this.$cookies.putObject('utilisateur', utilisateur)
     this.utilisateur = utilisateur
-    console.log(this.utilisateur)
+    //console.log(this.utilisateur)
   }
 
   deleteCookies () {
-    console.log('delete cookie')
+    //console.log('delete cookie')
     this.utilisateur = undefined
     this.$cookies.remove('utilisateur')
   }

@@ -41,7 +41,7 @@ angular.module('app', [RouteModule, 'mwl.calendar', 'ui.bootstrap', ngCookies])
 .component('authentification', AuthentifComponent)
 
 .config(route, ['calendarConfig', function (calendarConfig) {
-  console.log(calendarConfig)
+  //console.log(calendarConfig)
   calendarConfig.templates.calendarMonthView = 'path/to/custom/template.html'
   calendarConfig.dateFormatter = 'moment'
   calendarConfig.allDateFormats.moment.date.hour = 'HH:mm'
