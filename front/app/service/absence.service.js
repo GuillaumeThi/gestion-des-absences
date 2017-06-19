@@ -1,17 +1,19 @@
 export class AbsenceService {
-  constructor ($http, API_URL, publicPath) {
+  constructor ($http, API_URL, publicPath, LoginService) {
     this.$http = $http
     this.apiUrl = API_URL + publicPath + 'absences'
+    this.loginService = LoginService
   }
 
-  listerAbsences () {
+  listerAbsencesUtilisateurCourant () {
     let absences = this.$http.get(this.apiUrl)
-      .then(response => response.data)
+      .then(response => {
+        return response.data.filter(absence => absence.utilisateur.id === this.loginService.getId(this.loginService.loadCookies()))
+      })
 
     console.log(absences)
     return absences
   }
-
   listerTypesAbsence () {
     return this.$http.get(this.apiUrl + '/nouvelle-demande')
       .then(response => response.data)

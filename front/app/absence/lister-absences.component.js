@@ -8,7 +8,7 @@ class controller {
   }
 
   $onInit () {
-    this.AbsenceService.listerAbsences()
+    this.AbsenceService.listerAbsencesUtilisateurCourant()
             .then(absences => {
               this.absences = absences
               this.absences.forEach(absence => {

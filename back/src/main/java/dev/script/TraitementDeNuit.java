@@ -44,7 +44,7 @@ public class TraitementDeNuit {
 	//private static final Logger log = LoggerFactory.getLogger(TraitementDeNuit.class);
 
 	//La méthode qui exécute le script à 1 heure du matin tout les jours
-    //@Scheduled(cron = "0/5 * * * * ?") //Schedule pour test
+	@Scheduled(cron="${cron.traitement.de.nuit}") //Schedule pour test
     //@Scheduled(cron = "0 0 1 * * ?") //Schedule pour prod
     public void fetchData(){
     	
