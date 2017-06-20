@@ -1,11 +1,11 @@
 export class AbsenceService {
-	constructor ($http, API_URL, publicPath, LoginService) {
-		this.$http = $http
-		this.apiUrl = API_URL + publicPath + 'absences'
-		this.loginService = LoginService
+  constructor ($http, API_URL, publicPath, LoginService) {
+    this.$http = $http
+    this.apiUrl = API_URL + publicPath + 'absences'
+    this.loginService = LoginService
 
-		this.user = this.loginService.loadCookies()
-	}
+    this.user = this.loginService.loadCookies()
+  }
 
 	listerAbsencesUtilisateurCourant () {
 
@@ -22,11 +22,13 @@ export class AbsenceService {
 
 	listerTypesAbsence () {
 
-		return this.$http.get(this.apiUrl + '/nouvelle-demande')
+  listerTypesAbsence () {
+    return this.$http.get(this.apiUrl + '/nouvelle-demande')
 			.then(response => response.data)
-	}
+  }
 
-	parser (date) {
+  parser (date) {
+    let moisFrancais = ['janvier', 'février', 'mars', 'avril', 'mai', 'juin', 'juillet', 'août', 'septembre', 'octobre', 'novembre', 'décembre']
 
 		let moisFrancais = ["janvier", "février", "mars", "avril", "mai", "juin", "juillet", "août", "septembre", "octobre", "novembre", "décembre"]
 

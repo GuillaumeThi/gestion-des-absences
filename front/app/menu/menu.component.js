@@ -8,7 +8,6 @@ class controller {
     this.LoginService = LoginService
     this.utilisateur = LoginService.loadCookies()
   }
-
   deconnexion () {
     this.LoginService.deleteCookies()
     this.utilisateur = undefined

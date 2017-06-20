@@ -5,7 +5,7 @@ export class EventService {
     this.jourFeries = []
     this.absences = []
     this.API_URL = API_URL + publicPath + 'jourFerie'
-    this.API_URL2 = API_URL + publicPath + 'absences'
+    this.API_URL2 = API_URL + publicPath + 'absences/total'
   }
 
     // return promise of jourFeries
