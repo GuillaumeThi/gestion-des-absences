@@ -28,7 +28,6 @@ public class CollaborateurService {
 		ObjectMapper objectMapper = new ObjectMapper();
 
 		try {
-			
 			URL url = new URL("https://raw.githubusercontent.com/DiginamicFormation/ressources-atelier/master/users.json");
 			return objectMapper.readValue(url, new TypeReference<ArrayList<Collaborateur>>() {});
 			

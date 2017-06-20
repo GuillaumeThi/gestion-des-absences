@@ -33,7 +33,7 @@ export function planning (moment, alert, calendarConfig, EventService, LoginServ
   })
   EventService.getAbs().then(absences => {
     absences.forEach(uneAbs => {
-      if (uneAbs.utilisateur.id === LoginService.getId(LoginService.loadCookies())) {
+      if (uneAbs.utilisateur.id === LoginService.loadCookies().id) {
         switch (uneAbs.type) {
           case 'RTT':
             vm.events.push({

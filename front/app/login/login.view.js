@@ -6,6 +6,7 @@ class controller {
     this.$location = $location
     this.erreurlog='false'
   }
+
   connexion (form) {
     this.LoginService.connexion(this.username, this.password)
         .then(utilisateur => {
@@ -13,9 +14,9 @@ class controller {
             this.erreurlog = 'true'
           }
           else{
-          this.LoginService.saveCookies(utilisateur)
-          this.$location.path('/absences')       
-        }
+            this.LoginService.saveCookies(utilisateur)
+            this.$location.path('/absences')       
+          }
         })
   }
 }

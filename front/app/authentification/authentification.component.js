@@ -14,8 +14,6 @@ class controller {
           // console.log('Et non!')
           $location.path('login')
         }
-      } else {
-        // console.log('cest bon !')
       }
     })
   }
