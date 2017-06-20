@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import dev.entity.Absence;
 import dev.entity.TypeAbsence;
 import dev.repository.AbsenceRepository;
 import dev.service.AbsenceService;
