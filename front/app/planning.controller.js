@@ -1,6 +1,7 @@
 export function planning (moment, alert, calendarConfig, EventService, LoginService) {
   var vm = this
-
+  var locale = window.navigator.userLanguage || window.navigator.language
+  moment.locale(locale)
     // These variables MUST be set as a minimum for the calendar to work
   vm.calendarView = 'month'
   vm.viewDate = new Date()
@@ -9,8 +10,6 @@ export function planning (moment, alert, calendarConfig, EventService, LoginServ
   EventService.getjourFeries().then(jourFeries => {
     jourFeries.forEach(unJourFerie => {
       if (unJourFerie.type === 'RTT_EMPLOYEUR') {
-        console.log(moment().locale)
-        console.log(moment.locale('fr'))
         vm.events.push({
           title: unJourFerie.type,
           startsAt: moment('' + unJourFerie.date.dayOfMonth + '-' + unJourFerie.date.monthValue + '-' + unJourFerie.date.year, 'DD-MM-YYYY'),
@@ -33,7 +32,6 @@ export function planning (moment, alert, calendarConfig, EventService, LoginServ
     })
   })
   EventService.getAbs().then(absences => {
-    console.log(LoginService.getId(LoginService.loadCookies()))
     absences.forEach(uneAbs => {
       if (uneAbs.utilisateur.id === LoginService.getId(LoginService.loadCookies())) {
         switch (uneAbs.type) {

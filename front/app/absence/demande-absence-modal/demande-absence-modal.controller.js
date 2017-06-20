@@ -1,15 +1,14 @@
 import template from './demande-absence-modal.component.html'
 
-export function DemandeAbsenceModalController($uibModal, $log, $document) {
+export function DemandeAbsenceModalController ($uibModal, $log, $document) {
+  let $ctrl = this
+  $ctrl.items = ['item1', 'item2', 'item3']
 
-    let $ctrl = this;
-  $ctrl.items = ['item1', 'item2', 'item3'];
-
-  $ctrl.animationsEnabled = true;
+  $ctrl.animationsEnabled = true
 
   $ctrl.open = function (size, parentSelector) {
-    let parentElem = parentSelector ? 
-      angular.element($document[0].querySelector('.modal-demo ' + parentSelector)) : undefined;
+    let parentElem = parentSelector
+      ? angular.element($document[0].querySelector('.modal-demo ' + parentSelector)) : undefined
     let modalInstance = $uibModal.open({
       animation: $ctrl.animationsEnabled,
       ariaLabelledBy: 'modal-title',
@@ -21,17 +20,17 @@ export function DemandeAbsenceModalController($uibModal, $log, $document) {
       appendTo: parentElem,
       resolve: {
         items: function () {
-          return $ctrl.items;
+          return $ctrl.items
         }
       }
-    });
+    })
 
     modalInstance.result.then(function (selectedItem) {
-      $ctrl.selected = selectedItem;
+      $ctrl.selected = selectedItem
     }, function () {
-      $log.info('Modal dismissed at: ' + new Date());
-    });
-  };
+      $log.info('Modal dismissed at: ' + new Date())
+    })
+  }
 
   $ctrl.openComponentModal = function () {
     let modalInstance = $uibModal.open({
@@ -39,17 +38,17 @@ export function DemandeAbsenceModalController($uibModal, $log, $document) {
       component: 'modalComponent',
       resolve: {
         items: function () {
-          return $ctrl.items;
+          return $ctrl.items
         }
       }
-    });
+    })
 
     modalInstance.result.then(function (selectedItem) {
-      $ctrl.selected = selectedItem;
+      $ctrl.selected = selectedItem
     }, function () {
-      $log.info('modal-component dismissed at: ' + new Date());
-    });
-  };
+      $log.info('modal-component dismissed at: ' + new Date())
+    })
+  }
 
   $ctrl.openMultipleModals = function () {
     $uibModal.open({
@@ -58,10 +57,10 @@ export function DemandeAbsenceModalController($uibModal, $log, $document) {
       ariaDescribedBy: 'modal-body-bottom',
       templateUrl: 'stackedModal.html',
       size: 'sm',
-      controller: function($scope) {
-        $scope.name = 'bottom';  
+      controller: function ($scope) {
+        $scope.name = 'bottom'
       }
-    });
+    })
 
     $uibModal.open({
       animation: $ctrl.animationsEnabled,
@@ -69,13 +68,13 @@ export function DemandeAbsenceModalController($uibModal, $log, $document) {
       ariaDescribedBy: 'modal-body-top',
       templateUrl: 'stackedModal.html',
       size: 'sm',
-      controller: function($scope) {
-        $scope.name = 'top';  
+      controller: function ($scope) {
+        $scope.name = 'top'
       }
-    });
-  };
+    })
+  }
 
   $ctrl.toggleAnimation = function () {
-    $ctrl.animationsEnabled = !$ctrl.animationsEnabled;
-  };
+    $ctrl.animationsEnabled = !$ctrl.animationsEnabled
+  }
 }

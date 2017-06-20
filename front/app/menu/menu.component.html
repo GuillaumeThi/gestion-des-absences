@@ -16,8 +16,9 @@
         <li ng-if="$ctrl.utilisateur.role==='MANAGER'"><a class="btn" ng-href="#">Validation demandes</a></li>
         <li ng-if="$ctrl.utilisateur.role==='MANAGER'"><a class="btn" ng-href="#">Vues synthétiques</a></li>
         <li><a class="btn" ng-href="#">Jours Feriés</a></li>
-        <li>{{$ctrl.utilisateur.role}}</li>
-        <li><a ng-click="$ctrl.deconnexion()"> Se deconnecter  <span class="glyphicon glyphicon-off" aria-hidden="true"></span></a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a ng-click="$ctrl.deconnexion()"> Se deconnecter <span class="glyphicon glyphicon-off" aria-hidden="true"></span></a></li>
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
