@@ -21,7 +21,8 @@ import { planning } from './planning.controller'
 import { EventService } from './event.service'
 import { AbsenceService } from './service/absence.service'
 
-import { moment } from 'moment'
+import * as moment from 'moment'
+import 'moment/locale/fr'
 
 angular.module('app', [RouteModule, 'mwl.calendar', 'ui.bootstrap', ngCookies])
 .value('API_URL', API_URL)
@@ -40,15 +41,16 @@ angular.module('app', [RouteModule, 'mwl.calendar', 'ui.bootstrap', ngCookies])
 .component('gdaAjouterAbsence', AjouterAbsenceComponent)
 .component('authentification', AuthentifComponent)
 
-.config(route, ['calendarConfig', function (calendarConfig) {
-  calendarConfig.templates.calendarMonthView = 'path/to/custom/template.html'
+.config(['calendarConfig', function (calendarConfig) {
+  // calendarConfig.templates.calendarMonthView = 'path/to/custom/template.html'
   calendarConfig.dateFormatter = 'moment'
   calendarConfig.allDateFormats.moment.date.hour = 'HH:mm'
   calendarConfig.allDateFormats.moment.title.day = 'ddd D MMM'
-  calendarConfig.i18nStrings.weekNumber = 'Week {week}'
+  calendarConfig.i18nStrings.weekNumber = 'Semaine {week}'
   calendarConfig.displayAllMonthEvents = true
   calendarConfig.showTimesOnWeekView = true
 }])
+.config(route)
 
 .controller('KitchenSinkCtrl', planning)
 
