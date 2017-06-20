@@ -18,7 +18,8 @@
         <li><a class="btn" ng-href="#">Jours Feriés</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a ng-click="$ctrl.deconnexion()"> Se deconnecter <span class="glyphicon glyphicon-off" aria-hidden="true"></span></a></li>
+        <li class="align-right"><a> {{$ctrl.utilisateur.role}}</a></li>
+        <li><a ng-click="$ctrl.deconnexion()"> Se deconnecter  <span class="glyphicon glyphicon-off" aria-hidden="true"></span></a></li>
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->

@@ -11,7 +11,9 @@
             <label for="password">Mot de passe</label>
             <input type="password" name="password" id="password" class="form-control" ng-model="$ctrl.password" required />
         </div>
-        <div ng-if="$ctrl.utilisateur===''" class="text-danger">Vos informations d'authentification sont invalides.</div>
+        <div class="alert alert-danger" ng-if="$ctrl.erreurlog==='true'">
+      Vos informations d'authentification sont invalides
+     </div>
         <div class="form-actions">
             <button type="submit" ng-disabled="form.$invalid" class="btn btn-primary">Se connecter</button>
         </div>

@@ -8,13 +8,7 @@ export class LoginService {
 
   connexion (email, password) {
     return this.$http.get(this.$API_URL + 'login?email=' + email + '&password=' + password)
-        .then(
-        rep => {
-          return rep.data
-        },
-        err => {
-          return this.$q.reject(err)
-        })
+        .then(rep => rep.data)
   }
   getId (utilisateur) {
     return utilisateur.id
