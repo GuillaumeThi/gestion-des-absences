@@ -6,10 +6,11 @@ export function planning (moment, alert, calendarConfig, EventService, LoginServ
   vm.viewDate = new Date()
 
   vm.events = []
-
   EventService.getjourFeries().then(jourFeries => {
     jourFeries.forEach(unJourFerie => {
       if (unJourFerie.type === 'RTT_EMPLOYEUR') {
+        console.log(moment().locale)
+        console.log(moment.locale('fr'))
         vm.events.push({
           title: unJourFerie.type,
           startsAt: moment('' + unJourFerie.date.dayOfMonth + '-' + unJourFerie.date.monthValue + '-' + unJourFerie.date.year, 'DD-MM-YYYY'),
