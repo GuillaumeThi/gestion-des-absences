@@ -16,6 +16,7 @@ import dev.entity.TypeJourFerie;
 import dev.entity.Utilisateur;
 import dev.repository.AbsenceRepository;
 import dev.repository.JourFerieRepository;
+import dev.repository.UtilisateurRepository;
 import dev.script.MethodeSurDate;
 
 
@@ -29,6 +30,7 @@ public class CalculAbsenceService {
 	
 	@Autowired private JourFerieRepository jfRepository;
 	@Autowired private AbsenceRepository absenceRepository;
+	@Autowired private UtilisateurRepository uRepository;
 	
 	@Autowired private Environment env;
 
@@ -59,7 +61,8 @@ public class CalculAbsenceService {
 	 * @param u
 	 * @return
 	 */
-	public Integer calculeCongeRestantUtilisateur(Utilisateur u,String typeAbsence){
+	public int calculeCongeRestantUtilisateur(String matricule, String typeAbsence){
+		Utilisateur u = uRepository.findByMatriculeCollab(matricule).get(0);
 		
 		List<Absence> listAbsUtilisateurValide = absenceRepository.findByUtilisateurIdAndTypeAndStatut(u.getId(),TypeAbsence.valueOf(typeAbsence), Statut.VALIDEE);
 		int decompteDeJour = 0;

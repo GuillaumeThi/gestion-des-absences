@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import dev.entity.Absence;
+import dev.entity.TypeAbsence;
 import dev.repository.AbsenceRepository;
 import dev.service.AbsenceService;
 import dev.service.CalculAbsenceService;
@@ -27,11 +28,10 @@ public class AbsenceController {
 
 	@GetMapping
 	public Map<String, Object> listerAbsences(@PathParam(value="matricule") String matricule) {
-		System.out.println(matricule);
 		Map<String, Object> map = new HashMap<>();
 		map.put("absences", this.absenceRepo.findAll());
-//		map.put("conges-payes", this.compteurService.calculeCongeRestantUtilisateur());
-//		map.put("RTT", this.compteurService.calculeCongeRestantUtilisateur());
+		map.put("congesPayes", this.compteurService.calculeCongeRestantUtilisateur(matricule, TypeAbsence.CONGE_PAYE.toString()));
+		map.put("RTT", this.compteurService.calculeCongeRestantUtilisateur(matricule, TypeAbsence.RTT.toString()));
 		return map;
 	}
 	
@@ -41,9 +41,4 @@ public class AbsenceController {
 		return this.absenceService.listerTypesAbsence();
 	}
 	
-//	@GetMapping(path="/compteur")
-//	public Integer getCompteursConges() {
-//
-//		return this.compteurService.calculeCongeRestantUtilisateur(u, typeAbsence);
-//	}
 }	

@@ -14,26 +14,22 @@ export class LoginService {
         },
         err => {
           return this.$q.reject(err)
-        }
-        )
+        })
   }
   getId (utilisateur) {
     return utilisateur.id
   }
   loadCookies () {
     if (!this.utilisateur) { this.utilisateur = this.$cookies.getObject('utilisateur') }
-      console.log(this.utilisateur)
     return this.utilisateur
   }
 
   saveCookies (utilisateur) {
     this.$cookies.putObject('utilisateur', utilisateur)
     this.utilisateur = utilisateur
-    //console.log(this.utilisateur)
   }
 
   deleteCookies () {
-    //console.log('delete cookie')
     this.utilisateur = undefined
     this.$cookies.remove('utilisateur')
   }

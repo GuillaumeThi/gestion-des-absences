@@ -3,24 +3,35 @@ export class AbsenceService {
     this.$http = $http
     this.apiUrl = API_URL + publicPath + 'absences'
     this.loginService = LoginService
+
+    this.user = this.loginService.loadCookies()
   }
 
   listerAbsencesUtilisateurCourant () {
 
-  	let user = this.loginService.loadCookies()
-    let absences = this.$http.get(this.apiUrl + "?matricule=" + user.matriculeCollab)
+    let absences = this.$http.get(this.apiUrl + "?matricule=" + this.user.matriculeCollab)
       .then(response => {
-      	console.log(response.data)
-      	return response.data.absences.filter(absence => absence.utilisateur.id === this.loginService.getId(user))
+      	return response.data.absences
+      		.filter(absence => absence.utilisateur.id === this.loginService.getId(this.user))
+      		/*.map(absence => {
+      			absence.dateDebut = toLongFrenchFormat(absence.dateDebut)
+      			absence.dateFin = toLongFrenchFormat(absence.dateFin)
+      			return absence
+      		})*/
       })
 
       return absences;
   }
 
-/*  getCompteursConges () {
-  	return this.$http.get(this.apiUrl + "/compteur?matricule=" + this.LoginService.loadCookies().matriculeCollab)
-  	.then(response => response.data)
-  }*/
+  getCompteurCongesPayes () {
+  	return this.$http.get(this.apiUrl + "?matricule=" + this.user.matriculeCollab)
+  	.then(response => response.data.congesPayes)
+  }
+
+  getCompteurRTT () {
+  	return this.$http.get(this.apiUrl + "?matricule=" + this.user.matriculeCollab)
+  	.then(response => response.data.RTT)
+  }
 
   listerTypesAbsence () {
     return this.$http.get(this.apiUrl + '/nouvelle-demande')
