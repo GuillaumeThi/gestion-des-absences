@@ -31,11 +31,6 @@ public class AbsenceController {
 		return this.absenceRepo.findAll();
 	}
 
-	@GetMapping(path="/total")
-    public List<Absence> listerTotalAbsences() {
-        return this.absenceRepo.findAll();
-    }
-	
 	@GetMapping
 	public Map<String, Object> listerAbsences(@PathParam(value="matricule") String matricule) {
 		Map<String, Object> map = new HashMap<>();
