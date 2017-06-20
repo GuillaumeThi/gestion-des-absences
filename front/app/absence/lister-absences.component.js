@@ -9,20 +9,14 @@ class controller {
 
     $onInit () {
         this.AbsenceService.listerAbsencesUtilisateurCourant()
-            .then(absences => { 
-                absences.forEach(absence => {
+            .then(donnees => { 
+                donnees.absences.forEach(absence => {
                     absence.dateDebut = this.AbsenceService.parser(absence.dateDebut)
                     absence.dateFin = this.AbsenceService.parser(absence.dateFin)
                 })
-
-                return this.absences = absences
+                
+                return this.donnees = donnees
             })
-
-        this.AbsenceService.getCompteurCongesPayes()
-            .then(congesPayes => this.congesPayes = congesPayes)
-
-        this.AbsenceService.getCompteurRTT()
-            .then(RTT => this.RTT = RTT)
     }
 }
 
@@ -30,8 +24,6 @@ export let ListerAbsencesComponent = {
     controller,
     template,
     bindings: {
-        absences: '<',
-        congesPayes: '<',
-        RTT: '<'
+        donnees: '<'
     }
 }

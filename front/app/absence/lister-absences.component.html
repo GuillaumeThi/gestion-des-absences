@@ -13,7 +13,7 @@
         </thead>
         
         <tbody>
-        	<tr ng-repeat="absence in $ctrl.absences track by $index">
+        	<tr ng-repeat="absence in $ctrl.donnees.absences track by $index">
         		<td>{{ absence.dateDebut }}</td>
         		<td>{{ absence.dateFin }}</td>
         		<td>{{ absence.type }}</td>
@@ -32,8 +32,8 @@
     <div id="compteurs">
         <strong>Solde des compteurs :</strong>
         <ul>
-            <li><strong>Congés : {{ $ctrl.congesPayes }}</strong></li>
-            <li><strong>RTT : {{ $ctrl.RTT }}</strong></li>
+            <li><strong>Congés : {{ $ctrl.donnees.congesPayes }}</strong></li>
+            <li><strong>RTT : {{ $ctrl.donnees.RTT }}</strong></li>
         </ul>
     </div>
 </div>

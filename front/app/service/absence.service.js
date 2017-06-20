@@ -9,22 +9,15 @@ export class AbsenceService {
 
 	listerAbsencesUtilisateurCourant () {
 
-		let absences = this.$http.get(this.apiUrl + "?matricule=" + this.user.matriculeCollab)
-			.then(response => response.data.absences.filter(absence => absence.utilisateur.id === this.loginService.getId(this.user)))
-
-		return absences
-	}
-
-	getCompteurCongesPayes () {
-
-		return this.$http.get(this.apiUrl + "?matricule=" + this.user.matriculeCollab)
-			.then(response => response.data.congesPayes)
-	}
-
-	getCompteurRTT () {
-
-		return this.$http.get(this.apiUrl + "?matricule=" + this.user.matriculeCollab)
-			.then(response => response.data.RTT)
+		return this.$http.get(this.apiUrl + "?matricule=" + this.loginService.loadCookies().matriculeCollab)
+			.then(response => {
+				let donnees = {}
+				donnees.absences = response.data.absences.filter(absence => absence.utilisateur.id === this.loginService.getId(this.loginService.loadCookies()))
+				donnees.congesPayes = response.data.congesPayes
+				donnees.RTT = response.data.RTT
+				console.log(donnees)
+				return donnees
+			})
 	}
 
 	listerTypesAbsence () {
@@ -36,7 +29,7 @@ export class AbsenceService {
 	parser (date) {
 
 		let moisFrancais = ["janvier", "février", "mars", "avril", "mai", "juin", "juillet", "août", "septembre", "octobre", "novembre", "décembre"]
-		
-		return date.dayOfMonth + ' ' + moisFrancais[date.monthValue] + ' ' + date.year
+
+		return date.dayOfMonth + ' ' + moisFrancais[date.monthValue -1] + ' ' + date.year
 	}
 }

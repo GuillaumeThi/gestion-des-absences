@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import dev.entity.Absence;
 import dev.entity.TypeAbsence;
 import dev.repository.AbsenceRepository;
 import dev.service.AbsenceService;
@@ -24,6 +25,11 @@ public class AbsenceController {
 	@Autowired private AbsenceService absenceService;
 	
 	@Autowired private CalculAbsenceService compteurService;
+	
+	@GetMapping(path="/total")
+	public List<Absence> listerTotalAbsences() {
+		return this.absenceRepo.findAll();
+	}
 
 	@GetMapping
 	public Map<String, Object> listerAbsences(@PathParam(value="matricule") String matricule) {
