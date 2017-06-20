@@ -2,17 +2,16 @@ import './menu.component.css'
 import template from './menu.component.html'
 
 class controller {
-  constructor (LoginService,$location) {
-
+  constructor (LoginService, $location) {
     this.titre = 'Menu'
-    this.$location=$location
-    this.LoginService=LoginService
+    this.$location = $location
+    this.LoginService = LoginService
     this.utilisateur = LoginService.loadCookies()
   }
-  
-  deconnexion(){
-    this.LoginService.deleteCookies();
-    this.utilisateur = undefined;
+
+  deconnexion () {
+    this.LoginService.deleteCookies()
+    this.utilisateur = undefined
     this.$location.path('login')
   }
 }
