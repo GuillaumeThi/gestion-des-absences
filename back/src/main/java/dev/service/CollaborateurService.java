@@ -98,8 +98,6 @@ public class CollaborateurService {
 		
     	return collab;
     }
-<<<<<<< HEAD
-=======
     
     /**
      * Retourne une liste de subalterne sous forme de matricule
@@ -121,6 +119,5 @@ public class CollaborateurService {
     	Utilisateur user = userRepository.findById(Integer.parseInt(id));
     	return user.getMatriculeCollab();
     }
-    
->>>>>>> USGDA018 - manager - validation demandes #21 - en cours de dev affichage ok
+
 }
