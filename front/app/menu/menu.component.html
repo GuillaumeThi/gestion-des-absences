@@ -15,7 +15,7 @@
         <li ng-class="{active:isActive('/planning')}"><a class="btn"  ng-href="planning">Planning des Absences</a></li>
         <li ng-if="$ctrl.utilisateur.role==='MANAGER'" ><a class="btn" ng-href="validation">Validation demandes</a></li>
         <li ng-if="$ctrl.utilisateur.role==='MANAGER'" ><a class="btn" ng-href="#">Vues synthétiques</a></li>
-        <li ><a class="btn" ng-href="#">Jours Feriés</a></li>
+        <li ><a class="btn" ng-href="jours-ferie">Jours Feriés</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li class="align-right"><a> {{$ctrl.utilisateur.role}}</a></li>

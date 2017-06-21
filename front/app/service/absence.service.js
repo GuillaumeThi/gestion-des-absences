@@ -53,7 +53,5 @@ export class AbsenceService {
 			})
 
       //console.log(absence)*/
-
-      
   }
 }

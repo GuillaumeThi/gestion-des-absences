@@ -31,6 +31,16 @@ export function route ($routeProvider, $locationProvider) {
     .when('/validation', {
       template: '<header><gda-menu></gda-menu></header> <gda-validation></gda-validation>'
     })
+    .when('/jours-ferie/', {
+      template: '<header><menu></menu></header> <gda-lister-jours-ferie></gda-lister-jours-ferie>',
+      requireAuth: true,
+      autoriseRole: ['MANAGER', 'ADMIN', 'COLLABORATEUR']
+    })
+    .when('/jour-ferie/nouvelle-demande', {
+      template: '<header><menu></menu></header> <gda-ajouter-jour-ferie></gda-ajouter-jour-ferie>',
+      requireAuth: true,
+      autoriseRole: ['ADMIN']
+    })
     .otherwise({
       redirectTo: '/'
     })

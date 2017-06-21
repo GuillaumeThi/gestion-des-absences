@@ -9,11 +9,14 @@ import 'angular-bootstrap-calendar/dist/css/angular-bootstrap-calendar.min.css'
 import { route } from './app.route'
 
 import { AccueilComponent } from './accueil/accueil.component'
-import { LoginComponent } from './login/login.view'
+import { LoginComponent } from './login/login.component'
 import { LoginService } from './login/login.service'
+import { JoursFeriesService } from './listerjoursferie/lister-jours-ferie.service'
 import { PlanningComponent } from './planning/planning.component'
 import { ModalComponent } from './modal/modal.component'
 import { ListerAbsencesComponent } from './absence/lister-absences.component'
+import { ListerJoursFerieComponent } from './listerjoursferie/lister-jours-ferie.component'
+import { AjouterJourFerieComponent } from './ajouterjourferie/ajouter-jour-ferie.component'
 import { AjouterAbsenceComponent } from './absence/ajouter-absence.component'
 import { MenuComponent } from './menu/menu.component'
 import { AuthentifComponent } from './authentification/authentification.component'
@@ -31,6 +34,7 @@ angular.module('app', [RouteModule, 'mwl.calendar', 'ui.bootstrap', ngCookies])
 .service('EventService', EventService)
 .service('LoginService', LoginService)
 .service('AbsenceService', AbsenceService)
+.service('JoursFeriesService', JoursFeriesService)
 
 .component('gdaMenu', MenuComponent)
 .component('gdaAccueil', AccueilComponent)
@@ -40,6 +44,8 @@ angular.module('app', [RouteModule, 'mwl.calendar', 'ui.bootstrap', ngCookies])
 .component('gdaListerAbsences', ListerAbsencesComponent)
 .component('gdaAjouterAbsence', AjouterAbsenceComponent)
 .component('authentification', AuthentifComponent)
+.component('gdaListerJoursFerie', ListerJoursFerieComponent)
+.component('gdaAjouterJourFerie', AjouterJourFerieComponent)
 
 .config(['calendarConfig', function (calendarConfig) {
   // calendarConfig.templates.calendarMonthView = 'path/to/custom/template.html'
