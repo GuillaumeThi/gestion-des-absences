@@ -20,9 +20,11 @@ import { AjouterJourFerieComponent } from './ajouterjourferie/ajouter-jour-ferie
 import { AjouterAbsenceComponent } from './absence/ajouter-absence.component'
 import { MenuComponent } from './menu/menu.component'
 import { AuthentifComponent } from './authentification/authentification.component'
+import { ValidationComponent } from './validation/validation.component'
 import { planning } from './planning.controller'
 import { EventService } from './event.service'
 import { AbsenceService } from './service/absence.service'
+import { UtilisateurService } from './service/utilisateur.service'
 
 import * as moment from 'moment'
 import 'moment/locale/fr'
@@ -35,14 +37,16 @@ angular.module('app', [RouteModule, 'mwl.calendar', 'ui.bootstrap', ngCookies])
 .service('LoginService', LoginService)
 .service('AbsenceService', AbsenceService)
 .service('JoursFeriesService', JoursFeriesService)
+.service('UtilisateurService',UtilisateurService)
 
 .component('gdaMenu', MenuComponent)
 .component('gdaAccueil', AccueilComponent)
 .component('gdaPlanning', PlanningComponent)
 .component('gdaModal', ModalComponent)
-.component('gdaLogin', LoginComponent)
+.component('login', LoginComponent)
 .component('gdaListerAbsences', ListerAbsencesComponent)
 .component('gdaAjouterAbsence', AjouterAbsenceComponent)
+.component('gdaValidation',ValidationComponent)
 .component('authentification', AuthentifComponent)
 .component('gdaListerJoursFerie', ListerJoursFerieComponent)
 .component('gdaAjouterJourFerie', AjouterJourFerieComponent)

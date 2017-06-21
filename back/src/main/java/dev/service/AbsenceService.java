@@ -3,12 +3,18 @@ package dev.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import dev.entity.Absence;
+import dev.entity.Statut;
 import dev.entity.TypeAbsence;
+import dev.repository.AbsenceRepository;
 
 @Service
 public class AbsenceService {
+	
+	@Autowired AbsenceRepository absRepository;
 
 	
 	/* 
@@ -27,4 +33,14 @@ public class AbsenceService {
         }
         return values;
 	}
+
+
+	public void setStatut(Absence a, Statut statut) {
+		a.setStatut(statut);
+		absRepository.saveAndFlush(a);
+		
+		
+		
+	}
+	
 }

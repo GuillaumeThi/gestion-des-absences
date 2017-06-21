@@ -119,5 +119,4 @@ public class CollaborateurService {
     	Utilisateur user = userRepository.findById(Integer.parseInt(id));
     	return user.getMatriculeCollab();
     }
-
 }
