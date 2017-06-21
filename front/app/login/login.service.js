@@ -10,7 +10,7 @@ export class LoginService {
     return this.$http.get(this.$API_URL + 'login?email=' + email + '&password=' + password)
         .then(rep => rep.data)
   }
- 
+
   loadCookies () {
     if (!this.utilisateur) { this.utilisateur = this.$cookies.getObject('utilisateur') }
     return this.utilisateur

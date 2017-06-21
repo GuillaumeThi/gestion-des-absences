@@ -4,18 +4,17 @@ class controller {
   constructor (LoginService, $location) {
     this.LoginService = LoginService
     this.$location = $location
-    this.erreurlog='false'
+    this.erreurlog = 'false'
   }
 
   connexion (form) {
     this.LoginService.connexion(this.username, this.password)
         .then(utilisateur => {
-          if( utilisateur==""){
+          if (utilisateur === '') {
             this.erreurlog = 'true'
-          }
-          else{
+          } else {
             this.LoginService.saveCookies(utilisateur)
-            this.$location.path('/absences')       
+            this.$location.path('/absences')
           }
         })
   }
