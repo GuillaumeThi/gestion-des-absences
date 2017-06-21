@@ -6,6 +6,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -13,10 +14,12 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import dev.entity.Collaborateur;
 import dev.entity.Utilisateur;
+import dev.repository.UtilisateurRepository;
 
 @Service
 public class CollaborateurService {
 
+	@Autowired UtilisateurRepository userRepository;
 	
 	/**
 	 * Fonction récupérant les collaborateurs stockés sur serveur distant
@@ -95,4 +98,29 @@ public class CollaborateurService {
 		
     	return collab;
     }
+<<<<<<< HEAD
+=======
+    
+    /**
+     * Retourne une liste de subalterne sous forme de matricule
+     * 
+     * @param matricule
+     * @return
+     */
+    public List<String> findSubalterne (String matricule){
+    	
+    	List<String> listSubalterne;
+    	Collaborateur manager = this.findCollaborateurByMatricule(matricule);
+    	
+    	listSubalterne = manager.getSubalternes();
+    	
+		return listSubalterne;
+    }
+    
+    public String findMatriculeById(String id){
+    	Utilisateur user = userRepository.findById(Integer.parseInt(id));
+    	return user.getMatriculeCollab();
+    }
+    
+>>>>>>> USGDA018 - manager - validation demandes #21 - en cours de dev affichage ok
 }

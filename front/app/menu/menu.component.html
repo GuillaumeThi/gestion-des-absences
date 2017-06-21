@@ -13,7 +13,7 @@
         <li  ng-model="$ctrl.utilisateur" ng-class="{active:isActive('/')}"><a class="btn"  href="/">Accueil<span class="sr-only">(current)</span></a></li>
         <li ng-class="{active:isActive('/absences')}"><a class="btn"  ng-href="absences">Gestion des Absences</a></li>
         <li ng-class="{active:isActive('/planning')}"><a class="btn"  ng-href="planning">Planning des Absences</a></li>
-        <li ng-if="$ctrl.utilisateur.role==='MANAGER'" ><a class="btn" ng-href="#">Validation demandes</a></li>
+        <li ng-if="$ctrl.utilisateur.role==='MANAGER'" ><a class="btn" ng-href="validation">Validation demandes</a></li>
         <li ng-if="$ctrl.utilisateur.role==='MANAGER'" ><a class="btn" ng-href="#">Vues synthétiques</a></li>
         <li ><a class="btn" ng-href="#">Jours Feriés</a></li>
       </ul>

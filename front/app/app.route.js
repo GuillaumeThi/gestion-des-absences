@@ -3,12 +3,12 @@ export function route ($routeProvider, $locationProvider) {
 
   $routeProvider
     .when('/', {
-      template: '<header><menu></menu></header> <accueil></accueil>',
+      template: '<header><gda-menu></gda-menu></header> <gda-accueil></gda-accueil>',
       requireAuth: true,
       autoriseRole: ['MANAGER', 'ADMIN', 'COLLABORATEUR']
     })
     .when('/planning', {
-      template: '<header><menu></menu></header> <planning></planning>',
+      template: '<header><gda-menu></gda-menu></header> <gda-planning></gda-planning>',
       requireAuth: true,
       autoriseRole: ['MANAGER', 'ADMIN', 'COLLABORATEUR']
     })
@@ -19,14 +19,17 @@ export function route ($routeProvider, $locationProvider) {
       template: '<login></login>'
     })
     .when('/absences', {
-      template: '<header><menu></menu></header> <gda-lister-absences></gda-lister-absences>',
+      template: '<header><gda-menu></gda-menu></header> <gda-lister-absences></gda-lister-absences>',
       requireAuth: true,
       autoriseRole: ['MANAGER', 'ADMIN', 'COLLABORATEUR']
     })
     .when('/absences/nouvelle-demande', {
-      template: '<header><menu></menu></header> <gda-ajouter-absence></gda-ajouter-absence>',
+      template: '<header><gda-menu></gda-menu></header> <gda-ajouter-absence></gda-ajouter-absence>',
       requireAuth: true,
       autoriseRole: ['MANAGER', 'ADMIN', 'COLLABORATEUR']
+    })
+    .when('/validation', {
+      template: '<header><gda-menu></gda-menu></header> <gda-validation></gda-validation>'
     })
     .otherwise({
       redirectTo: '/'

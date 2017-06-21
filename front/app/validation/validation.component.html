@@ -1,0 +1,23 @@
+<div class="container">
+    <table class="table table-striped">
+    	<thead>
+            <tr>
+            	<th>Date de début</th>
+                <th>Date de fin</th>
+                <th>Type</th>
+                <th>Statut</th>
+            </tr>
+        </thead>
+        
+        <tbody>
+        	<tr ng-repeat="absence in $ctrl.donnees.absences track by $index">
+        		<td>{{ absence.dateDebut }}</td>
+        		<td>{{ absence.dateFin }}</td>
+        		<td>{{ absence.type }}</td>
+        		<td>{{ absence.statut }}</td>
+                <td> <a ng-href="{{$ctrl.path}}/{{absence.id}}/VALIDEE"><span class="glyphicon glyphicon-ok"> </a></span></td>
+                <td> <a ng-href="{{$ctrl.path}}/{{absence.id}}/REJETEE"><span class="glyphicon glyphicon-remove"> </a></span></td>
+        	</tr>
+        </tbody>
+    </table>
+</div>
