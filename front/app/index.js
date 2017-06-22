@@ -19,10 +19,7 @@ import { ListerAbsencesComponent } from './absence/lister-absences.component'
 import { ListerJoursFerieComponent } from './listerjoursferie/lister-jours-ferie.component'
 import { AjouterJourFerieComponent } from './ajouterjourferie/ajouter-jour-ferie.component'
 import { AjouterAbsenceComponent } from './absence/ajouter-absence.component'
-=======
-import { ListerAbsencesComponent } from './lister-absences/lister-absences.component'
-import { AjouterAbsenceComponent } from './ajouter-absence/ajouter-absence.component'
->>>>>>> USGDA006 - absences - demande d'absence #9
+
 import { MenuComponent } from './menu/menu.component'
 import { AuthentifComponent } from './authentification/authentification.component'
 import { ValidationComponent } from './validation/validation.component'
