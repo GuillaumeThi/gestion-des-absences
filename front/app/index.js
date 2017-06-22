@@ -14,7 +14,7 @@ import { LoginService } from './login/login.service'
 import { JoursFeriesService } from './listerjoursferie/lister-jours-ferie.service'
 import { PlanningComponent } from './planning/planning.component'
 import { ModalComponent } from './modal/modal.component'
-<<<<<<< HEAD
+
 import { ListerAbsencesComponent } from './absence/lister-absences.component'
 import { ListerJoursFerieComponent } from './listerjoursferie/lister-jours-ferie.component'
 import { AjouterJourFerieComponent } from './ajouterjourferie/ajouter-jour-ferie.component'
