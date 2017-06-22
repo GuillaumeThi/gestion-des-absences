@@ -20,6 +20,11 @@ ul li {
 	display: block;
 }
 
+td span {
+	margin-right: 1em;
+	float: right;
+}
+
 #demande {
 	float: right;
 }

@@ -20,7 +20,7 @@ public class FilterResponseCORS extends OncePerRequestFilter {
         httpServletResponse.addHeader("Access-Control-Allow-Origin", "*");
         
         httpServletResponse.addHeader("Access-Control-Allow-Methods","GET, POST, PUT, DELETE, OPTIONS");
-        httpServletResponse.addHeader("Access-Control-Allow-Headers","origin, content-type, accept");
+        httpServletResponse.addHeader("Access-Control-Allow-Headers","origin, Content-Type, accept");
         filterChain.doFilter(httpServletRequest, httpServletResponse);
         
     }

@@ -59,6 +59,4 @@ public class JourFerie {
 		this.commentaire = commentaire;
 	}
 
-
-
 }

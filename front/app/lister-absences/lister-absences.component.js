@@ -11,12 +11,15 @@ class controller {
         this.AbsenceService.listerAbsencesUtilisateurCourant()
             .then(donnees => { 
                 donnees.absences.forEach(absence => {
-                    absence.dateDebut = this.AbsenceService.parser(absence.dateDebut)
-                    absence.dateFin = this.AbsenceService.parser(absence.dateFin)
+                    absence.type = this.AbsenceService.parserTypeAbsence(absence.type)
+                    absence.dateDebut = this.AbsenceService.parserDate(absence.dateDebut)
+                    absence.dateFin = this.AbsenceService.parserDate(absence.dateFin)
                 })
-                
+
                 return this.donnees = donnees
             })
+            
+        this.AbsenceService.listerTypesAbsence()
     }
 }
 

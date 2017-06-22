@@ -8,6 +8,8 @@ import javax.ws.rs.PathParam;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -33,17 +35,24 @@ public class AbsenceController {
 	
 	@GetMapping
 	public Map<String, Object> listerAbsences(@PathParam(value="matricule") String matricule) {
-		Map<String, Object> map = new HashMap<>();
-		map.put("absences", this.absenceRepo.findAll());
-		map.put("congesPayes", this.compteurService.calculeCongeRestantUtilisateur(matricule, TypeAbsence.CONGE_PAYE.toString()));
-		map.put("RTT", this.compteurService.calculeCongeRestantUtilisateur(matricule, TypeAbsence.RTT.toString()));
-		return map;
+			
+		Map<String, Object> data = new HashMap<>();
+		data.put("absences", this.absenceRepo.findAll());
+		data.put("congesPayes", this.compteurService.calculeCongeRestantUtilisateur(matricule, TypeAbsence.CONGE_PAYE.toString()));
+		data.put("RTT", this.compteurService.calculeCongeRestantUtilisateur(matricule, TypeAbsence.RTT.toString()));
+		return data;
 	}
 	
 	@GetMapping(path="/nouvelle-demande")
 	public List<String> listerTypesAbsence() {
 
 		return this.absenceService.listerTypesAbsence();
+	}
+	
+	@PostMapping(path="/total")
+	public void ajouterAbsence(@RequestBody Absence nouvelleAbsence) {
+		
+		absenceRepo.save(nouvelleAbsence);
 	}
 	
 }	

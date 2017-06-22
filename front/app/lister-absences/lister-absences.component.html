@@ -17,7 +17,11 @@
         		<td>{{ absence.dateDebut }}</td>
         		<td>{{ absence.dateFin }}</td>
         		<td>{{ absence.type }}</td>
-        		<td>{{ absence.statut }}</td>
+        		<td>
+                    {{ absence.statut }}
+                    <span class="glyphicon glyphicon-trash"></span>
+                    <span class="glyphicon glyphicon-pencil"></span>
+                </td>
         	</tr>
         </tbody>
     </table>
