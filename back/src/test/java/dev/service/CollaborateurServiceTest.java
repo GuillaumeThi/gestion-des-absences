@@ -17,7 +17,7 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 
 import dev.entity.Collaborateur;
 
-@ContextConfiguration(classes = { CollaborateurService.class })
+@ContextConfiguration(classes = { TestConfig.class,CollaborateurService.class })
 @RunWith(SpringRunner.class)
 public class CollaborateurServiceTest {
 
