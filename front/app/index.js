@@ -53,12 +53,9 @@ angular.module('app', [RouteModule, 'mwl.calendar', 'ui.bootstrap', ngCookies])
 .component('gdaAjouterAbsence', AjouterAbsenceComponent)
 .component('gdaValidation',ValidationComponent)
 .component('authentification', AuthentifComponent)
-<<<<<<< HEAD
 .component('gdaListerJoursFerie', ListerJoursFerieComponent)
 .component('gdaAjouterJourFerie', AjouterJourFerieComponent)
-=======
 .component('histogram', HistogramComponent)
->>>>>>> USGDA012 - manager - histogramme departement #15 - intégration pour la demo
 
 .config(['calendarConfig', function (calendarConfig) {
   // calendarConfig.templates.calendarMonthView = 'path/to/custom/template.html'
