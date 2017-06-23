@@ -62,7 +62,7 @@ public class CalculAbsenceService {
 	 * @return
 	 */
 	public int calculeCongeRestantUtilisateur(String matricule, String typeAbsence){
-		Utilisateur u = uRepository.findByMatriculeCollab(matricule).get(0);
+		Utilisateur u = uRepository.findByMatriculeCollab(matricule);
 		
 		List<Absence> listAbsUtilisateurValide = absenceRepository.findByUtilisateurIdAndTypeAndStatut(u.getId(),TypeAbsence.valueOf(typeAbsence), Statut.VALIDEE);
 		int decompteDeJour = 0;

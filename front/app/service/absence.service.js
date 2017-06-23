@@ -8,21 +8,25 @@ export class AbsenceService {
     this.$q = $q
   }
 
+  /**
+   * Renvoie la liste des absences de l'utilisateur courant 
+   * sous la forme d'une prommesse
+   * @return {Promise}
+   */
   listerAbsencesUtilisateurCourant () {
     return this.$http.get(this.apiUrl + '?matricule=' + this.loginService.loadCookies().matriculeCollab)
-.then(response => {
-  let donnees = {}
-  donnees.absences = response.data.absences.filter(absence => absence.utilisateur.id === this.loginService.loadCookies().id)
-  donnees.congesPayes = response.data.congesPayes
-  donnees.RTT = response.data.RTT
-  console.log(donnees)
-  return donnees
-})
+    .then(response => {
+      let donnees = {}
+      donnees.absences = response.data.absences
+      donnees.congesPayes = response.data.congesPayes
+      donnees.RTT = response.data.RTT
+      return donnees
+    })
   }
 
   listerTypesAbsence () {
     return this.$http.get(this.apiUrl + '/nouvelle-demande')
-.then(response => response.data)
+    .then(response => response.data)
   }
 
   parser (date) {
@@ -32,28 +36,27 @@ export class AbsenceService {
 
   /**
    * Renvoi la liste d'absence de l'utilisateur dont le matricule
-   * est passé en paramètre
+   * est passé en paramètre sous la forme d'une prommesse
    * 
-   * @param {String} matriculeSubalterne 
+   * @param {String} matriculeSubalterne
+   * @return {Promise}
    */
   listerAbsencesSubalterne (matriculeSubalterne) {
 
     let promiseAbsence = this.$http.get(this.apiUrl + "?matricule=" + matriculeSubalterne)
     let promiseUserId = this.UtilisateurService.getUtilisateurByMatricule(matriculeSubalterne)
-    //console.log(promiseAbsence)
-    //console.log(promiseUserId)
 
-    return this.$q.all([promiseAbsence,promiseUserId])
+    return this.$q.all([promiseAbsence,promiseUserId]) //Permet d'attendre la résolution des deux prommesse avant de poursuivre
       .then(response => {
 				let donnees = {}
-
-				donnees.absences = response[0].data.absences.filter(absence => absence.utilisateur.id === response[1][0].id)                                       
+				donnees.absences = response[0].data.absences.filter(absence => absence.statut === 'EN_ATTENTE_VALIDATION').filter(absence => absence.type !== 'MISSION')                                       
 				donnees.congesPayes = response[0].data.congesPayes
 				donnees.RTT = response[0].data.RTT
+        donnees.nom = response[0].data.nom
+        donnees.prenom = response[0].data.prenom
 				return donnees
 			})
 
-      //console.log(absence)*/
   	}
 
 	ajouterAbsence (absence) {

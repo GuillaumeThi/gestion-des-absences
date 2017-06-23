@@ -15,9 +15,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import dev.entity.Absence;
 import dev.entity.TypeAbsence;
+import dev.entity.Utilisateur;
 import dev.repository.AbsenceRepository;
+import dev.repository.UtilisateurRepository;
 import dev.service.AbsenceService;
 import dev.service.CalculAbsenceService;
+import dev.service.CollaborateurService;
 
 @RestController
 @RequestMapping("/absences")
@@ -25,6 +28,8 @@ public class AbsenceController {
 
 	@Autowired private AbsenceRepository absenceRepo;
 	@Autowired private AbsenceService absenceService;
+	@Autowired private UtilisateurRepository userRepository;
+	@Autowired private CollaborateurService collabService;
 	
 	@Autowired private CalculAbsenceService compteurService;
 	
@@ -35,12 +40,15 @@ public class AbsenceController {
 	
 	@GetMapping
 	public Map<String, Object> listerAbsences(@PathParam(value="matricule") String matricule) {
-			
-		Map<String, Object> data = new HashMap<>();
-		data.put("absences", this.absenceRepo.findAll());
-		data.put("congesPayes", this.compteurService.calculeCongeRestantUtilisateur(matricule, TypeAbsence.CONGE_PAYE.toString()));
-		data.put("RTT", this.compteurService.calculeCongeRestantUtilisateur(matricule, TypeAbsence.RTT.toString()));
-		return data;
+		Map<String, Object> map = new HashMap<>();
+		Utilisateur user = userRepository.findByMatriculeCollab(matricule);
+	
+		map.put("absences", this.absenceRepo.findByUtilisateurId(user.getId()));
+		map.put("congesPayes", this.compteurService.calculeCongeRestantUtilisateur(matricule, TypeAbsence.CONGE_PAYE.toString()));
+		map.put("RTT", this.compteurService.calculeCongeRestantUtilisateur(matricule, TypeAbsence.RTT.toString()));
+		map.put("nom", this.collabService.findCollaborateurByMatricule(matricule).getPrenom());
+		map.put("prenom", this.collabService.findCollaborateurByMatricule(matricule).getNom());
+		return map;
 	}
 	
 	@GetMapping(path="/nouvelle-demande")

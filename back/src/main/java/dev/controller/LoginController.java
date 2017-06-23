@@ -32,7 +32,7 @@ public class LoginController {
 		if(!listcollab.isEmpty()){ 
 			Collaborateur collaborateur=listcollab.get(0);
 			if (collaborateur.getPassword().equals(DigestUtils.sha1Hex(password))){
-				return utiliRepo.findByMatriculeCollab(collaborateur.getMatricule()).get(0);
+				return utiliRepo.findByMatriculeCollab(collaborateur.getMatricule());
 			}
 		}
 		return null;

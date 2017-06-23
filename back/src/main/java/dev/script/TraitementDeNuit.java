@@ -1,21 +1,16 @@
 package dev.script;
 
-import java.io.IOException;
 import java.util.List;
 import java.util.Properties;
 
 //import org.slf4j.Logger;
 //import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.env.Environment;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
-
-import com.fasterxml.jackson.core.JsonParseException;
-import com.fasterxml.jackson.databind.JsonMappingException;
 
 import dev.entity.Absence;
 import dev.entity.Collaborateur;
@@ -91,7 +86,7 @@ public class TraitementDeNuit {
 			//msg.setTo(collabServ.findEmailManager(u)); //Pour la Prod
 			msg.setText(textMsg);
 			
-			mailSender.send(msg);
+			//mailSender.send(msg);
 		}		
         
     }
