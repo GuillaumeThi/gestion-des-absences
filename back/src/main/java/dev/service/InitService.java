@@ -49,7 +49,7 @@ public class InitService{
 				Utilisateur user = new Utilisateur(collaborateur.getMatricule(), null, Role.COLLABORATEUR);
 				utilisateurrepo.save(user);
 				absR.saveAndFlush(new Absence( LocalDate.parse("2017-06-20"), LocalDate.parse("2017-06-21"), TypeAbsence.getRandomTypeAbsence(), Statut.INITIALE, "un motif d'absence",user));
-				absR.saveAndFlush(new Absence( LocalDate.parse("2017-06-18"), LocalDate.parse("2017-06-18"), TypeAbsence.getRandomTypeAbsence(), Statut.INITIALE, "un motif d'absence",user));
+				absR.saveAndFlush(new Absence( LocalDate.parse("2017-06-18"), LocalDate.parse("2017-06-18"), TypeAbsence.getRandomTypeAbsence(), Statut.VALIDEE, "un motif d'absence",user));
 				absR.saveAndFlush(new Absence( LocalDate.parse("2017-06-19"), LocalDate.parse("2017-06-23"), TypeAbsence.getRandomTypeAbsence(), Statut.INITIALE, "un motif d'absence",user));
 			}
 			//return listcollab;

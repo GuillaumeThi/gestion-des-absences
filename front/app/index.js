@@ -8,6 +8,8 @@ import 'angular-bootstrap-calendar/dist/css/angular-bootstrap-calendar.min.css'
 
 import { route } from './app.route'
 
+import { HistogramService } from './histogram/histogram.service'
+import { HistogramComponent } from './histogram/histogram.component'
 import { AccueilComponent } from './accueil/accueil.component'
 import { LoginComponent } from './login/login.component'
 import { LoginService } from './login/login.service'
@@ -40,6 +42,7 @@ angular.module('app', [RouteModule, 'mwl.calendar', 'ui.bootstrap', ngCookies])
 .service('AbsenceService', AbsenceService)
 .service('JoursFeriesService', JoursFeriesService)
 .service('UtilisateurService',UtilisateurService)
+.service('HistogramService', HistogramService)
 
 .component('gdaMenu', MenuComponent)
 .component('gdaAccueil', AccueilComponent)
@@ -50,8 +53,12 @@ angular.module('app', [RouteModule, 'mwl.calendar', 'ui.bootstrap', ngCookies])
 .component('gdaAjouterAbsence', AjouterAbsenceComponent)
 .component('gdaValidation',ValidationComponent)
 .component('authentification', AuthentifComponent)
+<<<<<<< HEAD
 .component('gdaListerJoursFerie', ListerJoursFerieComponent)
 .component('gdaAjouterJourFerie', AjouterJourFerieComponent)
+=======
+.component('histogram', HistogramComponent)
+>>>>>>> USGDA012 - manager - histogramme departement #15 - intégration pour la demo
 
 .config(['calendarConfig', function (calendarConfig) {
   // calendarConfig.templates.calendarMonthView = 'path/to/custom/template.html'

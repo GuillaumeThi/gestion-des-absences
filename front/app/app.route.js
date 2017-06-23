@@ -7,6 +7,11 @@ export function route ($routeProvider, $locationProvider) {
       requireAuth: true,
       autoriseRole: ['MANAGER', 'ADMIN', 'COLLABORATEUR']
     })
+    .when('/histogram', {
+      template: '<header><menu></menu></header> <histogram></histogram>',
+      requireAuth: true,
+      autoriseRole: ['MANAGER']
+    })
     .when('/planning', {
       template: '<header><gda-menu></gda-menu></header> <gda-planning></gda-planning>',
       requireAuth: true,
